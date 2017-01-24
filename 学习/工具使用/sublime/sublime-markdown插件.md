@@ -4,8 +4,6 @@
 ```
 MarkDown Editing：支持Markdown语法高亮；支持Github Favored Markdown语法；自带3个主题。
 
-
-
 主题选择
 
 注：如果你安装完之后，遇到了如下的错误，那么你安装的时候可能开着一个Markdown文件，所以卸载完之后在不打开Markdown的情况下再次安装就可以解决了。
