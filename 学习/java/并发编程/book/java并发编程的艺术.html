@@ -1,0 +1,2480 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="http" content="//blog.csdn.net/u013142781/article/details/50805655"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>java并发编程的艺术</title></head><body><article class="markdown-body"><div class="toc">
+<ul>
+<li><a href="#_1">并发编程的挑战</a><ul>
+<li><a href="#_2">多线程不一定快</a></li>
+<li><a href="#_3">减少上下文切换实战</a></li>
+<li><a href="#_4">死锁</a></li>
+<li><a href="#_5">避免死锁的几个常见方法</a></li>
+<li><a href="#_6">资源限制</a></li>
+<li><a href="#_7">总结</a></li>
+</ul>
+</li>
+<li><a href="#java">java并发机制的底层实现原理</a><ul>
+<li><a href="#volatile">volatile应用</a></li>
+<li><a href="#volatile_1">volatile优化</a></li>
+<li><a href="#synchronized">synchronized的实现原理与应用</a></li>
+<li><a href="#java_1">java对象头</a></li>
+<li><a href="#_8">锁的升级</a></li>
+<li><a href="#_9">原子操作的实现原理</a></li>
+</ul>
+</li>
+<li><a href="#java_2">java内存模型</a><ul>
+<li><a href="#_10">线程之间如何通信</a></li>
+<li><a href="#_11">线程之间如何同步</a></li>
+<li><a href="#_12">内存可见性问题</a></li>
+</ul>
+</li>
+<li><a href="#java_3">Java内存模型的抽象结构</a><ul>
+<li><a href="#_13">线程之间通信</a></li>
+<li><a href="#_14">从源代码到指令序列的重排序</a></li>
+<li><a href="#_15">重排序</a></li>
+<li><a href="#volatile_2">volatile的内存语义</a></li>
+<li><a href="#_16">锁的内存语义</a></li>
+<li><a href="#_17">锁内存语义的实现</a></li>
+<li><a href="#concurrent">concurrent包的实现</a></li>
+</ul>
+</li>
+<li><a href="#_18">双重检查锁定</a><ul>
+<li><a href="#_19">两个办法来实现线程安全的延迟初始化</a></li>
+</ul>
+</li>
+<li><a href="#java_4">java并发编程基础</a><ul>
+<li><a href="#_20">线程</a></li>
+<li><a href="#_21">线程的状态</a></li>
+<li><a href="#_22">管道输入/输出流</a></li>
+<li><a href="#threadjoin">Thread.join()作用</a></li>
+<li><a href="#threadlocal">ThreadLocal的使用</a></li>
+<li><a href="#_23">一个简单的数据库连接池示例</a></li>
+<li><a href="#_24">线程池技术及其示例</a></li>
+<li><a href="#web">一个基于线程池技术的简单Web服务器</a></li>
+<li><a href="#_25"></a></li>
+<li><a href="#_26"></a></li>
+<li><a href="#_27"></a></li>
+<li><a href="#_28"></a></li>
+<li><a href="#_29"></a></li>
+<li><a href="#_30"></a></li>
+</ul>
+</li>
+<li><a href="#java_5">java中的锁</a><ul>
+<li><a href="#_31"></a></li>
+<li><a href="#_32"></a></li>
+<li><a href="#_33"></a></li>
+<li><a href="#_34"></a></li>
+<li><a href="#_35"></a></li>
+<li><a href="#_36"></a></li>
+</ul>
+</li>
+<li><a href="#java_6">java并发容器与框架</a><ul>
+<li><a href="#_37"></a></li>
+<li><a href="#_38"></a></li>
+<li><a href="#_39"></a></li>
+<li><a href="#_40"></a></li>
+<li><a href="#_41"></a></li>
+<li><a href="#_42"></a></li>
+</ul>
+</li>
+<li><a href="#java13">java中的13个原子操作类</a><ul>
+<li><a href="#_43"></a></li>
+<li><a href="#_44"></a></li>
+<li><a href="#_45"></a></li>
+<li><a href="#_46"></a></li>
+<li><a href="#_47"></a></li>
+<li><a href="#_48"></a></li>
+</ul>
+</li>
+<li><a href="#java_7">java中的并发工具类</a><ul>
+<li><a href="#_49"></a></li>
+<li><a href="#_50"></a></li>
+<li><a href="#_51"></a></li>
+<li><a href="#_52"></a></li>
+<li><a href="#_53"></a></li>
+<li><a href="#_54"></a></li>
+</ul>
+</li>
+<li><a href="#java_8">java中的线程池</a><ul>
+<li><a href="#_55"></a></li>
+<li><a href="#_56"></a></li>
+<li><a href="#_57"></a></li>
+<li><a href="#_58"></a></li>
+<li><a href="#_59"></a></li>
+</ul>
+</li>
+<li><a href="#executor">executor框架</a><ul>
+<li><a href="#_60"></a></li>
+<li><a href="#_61"></a></li>
+<li><a href="#_62"></a></li>
+<li><a href="#_63"></a></li>
+<li><a href="#_64"></a></li>
+</ul>
+</li>
+<li><a href="#java_9">java并发编程实践</a><ul>
+<li><a href="#_65"></a></li>
+<li><a href="#_66"></a></li>
+<li><a href="#_67"></a></li>
+<li><a href="#_68"></a></li>
+<li><a href="#_69"></a></li>
+<li><a href="#_70"></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>并发编程的挑战</h2>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多线程不一定快</h3>
+<pre><code>当并发执行累加操作不超过百万次时，速度会比串行执行累加操作要
+慢。那么，为什么并发执行的速度会比串行慢呢？这是因为线程有创建和上下文切换的开销。
+</code></pre>
+
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>减少上下文切换实战</h3>
+<pre><code>第一步：用jstack命令dump线程信息，看看pid为3117的进程里的线程都在做什么。
+sudo -u admin /opt/ifeve/java/bin/jstack 31177 &gt; /home/adanac/dump3117
+
+第二步：统计所有线程分别处于什么状态，发现300多个线程处于WAITING（onobject-
+monitor）状态。
+[adanac@localhost ~]$ grep java.lang.Thread.State dump3117 | awk '{print $2$3$4$5}'
+        | sort | uniq -c
+ 39 RUNNABLE
+ 21 TIMED_WAITING(onobjectmonitor)
+ 6 TIMED_WAITING(parking)
+ 51 TIMED_WAITING(sleeping)
+ 305 WAITING(onobjectmonitor)
+ 3 WAITING(parking)
+
+第三步：打开dump文件查看处于WAITING（onobjectmonitor）的线程在做什么。发现这些线
+程基本全是JBOSS的工作线程，在await。说明JBOSS线程池里线程接收到的任务太少，大量线
+程都闲着。
+&quot;http-0.0.0.0-7001-97&quot; daemon prio=10 tid=0x000000004f6a8000 nid=0x555e in
+    Object.wait() [0x0000000052423000]
+ java.lang.Thread.State: WAITING (on object monitor)
+ at java.lang.Object.wait(Native Method)
+ - waiting on &lt;0x00000007969b2280&gt; (a org.apache.tomcat.util.net.AprEndpoint$Worker)
+ at java.lang.Object.wait(Object.java:485)
+ at org.apache.tomcat.util.net.AprEndpoint$Worker.await(AprEndpoint.java:1464)
+ - locked &lt;0x00000007969b2280&gt; (a org.apache.tomcat.util.net.AprEndpoint$Worker)
+ at org.apache.tomcat.util.net.AprEndpoint$Worker.run(AprEndpoint.java:1489)
+ at java.lang.Thread.run(Thread.java:662)
+
+第四步：减少JBOSS的工作线程数，找到JBOSS的线程池配置信息，将maxThreads降到
+100。&lt;maxThreads=&quot;250&quot; maxHttpHeaderSize=&quot;8192&quot;
+ emptySessionPath=&quot;false&quot; minSpareThreads=&quot;40&quot; maxSpareThreads=&quot;75&quot; 
+     maxPostSize=&quot;512000&quot; protocol=&quot;HTTP/1.1&quot;
+ enableLookups=&quot;false&quot; redirectPort=&quot;8443&quot; acceptCount=&quot;200&quot; bufferSize=&quot;16384&quot;
+ connectionTimeout=&quot;15000&quot; disableUploadTimeout=&quot;false&quot; useBodyEncodingForURI= &quot;true&quot;&gt;
+
+第五步：重启JBOSS，再dump线程信息，然后统计WAITING（onobjectmonitor）的线程，发现
+减少了175个。WAITING的线程少了，系统上下文切换的次数就会少，因为每一次从
+WAITTING到RUNNABLE都会进行一次上下文的切换。读者也可以使用vmstat命令测试一下。
+[adanac@localhost ~]$ grep java.lang.Thread.State dump3117 | awk '{print $2$3$4$5}'
+    | sort | uniq -c
+   44 RUNNABLE
+   22 TIMED_WAITING(onobjectmonitor)
+   9 TIMED_WAITING(parking)
+   36 TIMED_WAITING(sleeping)
+   130 WAITING(onobjectmonitor)
+1  WAITING(parking)
+</code></pre>
+
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>死锁</h3>
+<pre><code>一旦出现死锁，业务是可感知的，因为不能继续提供服务了，那么只能通过dump线程查看
+到底是哪个线程出现了问题。
+以下线程信息告诉我们是DeadLockDemo类的第32行和第22行引
+起的死锁。
+
+C:\Users\allen&gt;jstack 1448
+2017-02-04 21:58:27
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.60-b23 mixed mode):
+
+&quot;DestroyJavaVM&quot; #12 prio=5 os_prio=0 tid=0x00000000023c8000 nid=0x1030 waiting o
+n condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;Thread-1&quot; #11 prio=5 os_prio=0 tid=0x000000005878d000 nid=0x136c waiting for mo
+nitor entry [0x000000005966f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.adanac.book.concurrency.test.one.DeadLockDemo$2.run(DeadLockDemo.
+java:32)
+        - waiting to lock &lt;0x00000000d6bbc470&gt; (a java.lang.String)
+        - locked &lt;0x00000000d6bbc4a0&gt; (a java.lang.String)
+        at java.lang.Thread.run(Thread.java:745)
+
+&quot;Thread-0&quot; #10 prio=5 os_prio=0 tid=0x000000005878c800 nid=0xa98 waiting for mon
+itor entry [0x000000005951f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at com.adanac.book.concurrency.test.one.DeadLockDemo$1.run(DeadLockDemo.
+java:22)
+        - waiting to lock &lt;0x00000000d6bbc4a0&gt; (a java.lang.String)
+        - locked &lt;0x00000000d6bbc470&gt; (a java.lang.String)
+        at java.lang.Thread.run(Thread.java:745)
+</code></pre>
+
+<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>避免死锁的几个常见方法</h3>
+<pre><code>·避免一个线程同时获取多个锁。
+·避免一个线程在锁内同时占用多个资源，尽量保证每个锁只占用一个资源。
+·尝试使用定时锁，使用lock.tryLock（timeout）来替代使用内部锁机制。
+·对于数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现解锁失败的情况。
+</code></pre>
+
+<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>资源限制</h3>
+<pre><code>（1）什么是资源限制
+资源限制是指在进行并发编程时，程序的执行速度受限于计算机硬件资源或软件资源。
+例如，服务器的带宽只有2Mb/s，某个资源的下载速度是1Mb/s每秒，系统启动10个线程下载资
+源，下载速度不会变成10Mb/s，所以在进行并发编程时，要考虑这些资源的限制。硬件资源限
+制有带宽的上传/下载速度、硬盘读写速度和CPU的处理速度。软件资源限制有数据库的连接
+数和socket连接数等。
+（2）资源限制引发的问题
+在并发编程中，将代码执行速度加快的原则是将代码中串行执行的部分变成并发执行，
+但是如果将某段串行的代码并发执行，因为受限于资源，仍然在串行执行，这时候程序不仅不
+会加快执行，反而会更慢，因为增加了上下文切换和资源调度的时间。例如，之前看到一段程
+序使用多线程在办公网并发地下载和处理数据时，导致CPU利用率达到100%，几个小时都不
+能运行完成任务，后来修改成单线程，一个小时就执行完成了。
+
+（3）如何解决资源限制的问题
+对于硬件资源限制，可以考虑使用集群并行执行程序。既然单机的资源有限制，那么就让
+程序在多机上运行。比如使用ODPS、Hadoop或者自己搭建服务器集群，不同的机器处理不同
+的数据。可以通过“数据ID%机器数”，计算得到一个机器编号，然后由对应编号的机器处理这
+笔数据。
+对于软件资源限制，可以考虑使用资源池将资源复用。比如使用连接池将数据库和Socket
+连接复用，或者在调用对方webservice接口获取数据时，只建立一个连接。
+（4）在资源限制情况下进行并发编程如何在资源限制的情况下，让程序执行得更快呢？方法就是，根据不同的资源限制调整
+程序的并发度，比如下载文件程序依赖于两个资源——带宽和硬盘读写速度。有数据库操作
+时，涉及数据库连接数，如果SQL语句执行非常快，而线程的数量比数据库连接数大很多，则
+某些线程会被阻塞，等待数据库连接。
+</code></pre>
+
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>总结</h3>
+<pre><code>在并发下如果出现问题，定位起来会比较耗时和棘手,所以
+建议多使用JDK并发包提供的并发容器和工具类来解决并发
+问题，因为这些类都已经通过了充分的测试和优化
+</code></pre>
+
+<h2 id="java"><a name="user-content-java" href="#java" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java并发机制的底层实现原理</h2>
+<h3 id="volatile"><a name="user-content-volatile" href="#volatile" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>volatile应用</h3>
+<pre><code>volatile是轻量级的synchronized，它在多处理器开发中保证了共享变量的“可见性”。
+可见性的意思是当一个线程修改一个共享变量时，另外一个线程能读到这个修改的值。
+它比synchronized的使用和执行成本更低，因为它不会引起线程上下文的切换和调度。
+如果一个字段被声明成volatile，Java线程内存
+模型确保所有线程看到这个变量的值是一致的。
+
+</code></pre>
+
+<h3 id="volatile_1"><a name="user-content-volatile_1" href="#volatile_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>volatile优化</h3>
+<pre><code>Java并发编程大师Doug lea在JDK 7的并发包里新增一个队列集合类Linked-
+TransferQueue，它在使用volatile变量时，用一种追加字节的方式来优化队列出队和入队的性
+能。LinkedTransferQueue的代码如下。
+/** 
+队列中的头部节点
+ */
+private transient final PaddedAtomicReference&lt;QNode&gt; head;
+/** 
+队列中的尾部节点
+ */
+private transient final PaddedAtomicReference&lt;QNode&gt; tail;
+static final class PaddedAtomicReference &lt;T&gt; extends AtomicReference T&gt; {
+     // 使用很多4个字节的引用追加到64个字节
+     Object p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, pa, pb, pc, pd, pe;
+     PaddedAtomicReference(T r) {
+        super(r);
+     }
+}
+public class AtomicReference &lt;V&gt; implements java.io.Serializable {
+     private volatile V value;
+     // 
+省略其他代码
+｝
+Doug lea使
+用追加到64字节的方式来填满高速缓冲区的缓存行，避免头节点和尾节点加载到同一个缓存行，使头、尾节点在修改时不会互相锁定。
+
+</code></pre>
+
+<h3 id="synchronized"><a name="user-content-synchronized" href="#synchronized" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>synchronized的实现原理与应用</h3>
+<pre><code>synchronized实现同步的基础：Java中的每一个对象都可以作为锁。具体表现
+为以下3种形式。
+·对于普通同步方法，锁是当前实例对象。
+·对于静态同步方法，锁是当前类的Class对象。
+·对于同步方法块，锁是Synchonized括号里配置的对象。
+
+当一个线程试图访问同步代码块时，它首先必须得到锁，退出或抛出异常时必须释放锁。
+
+</code></pre>
+
+<h3 id="java_1"><a name="user-content-java_1" href="#java_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java对象头</h3>
+<pre><code>synchronized用的锁是存在Java对象头里的。如果对象是数组类型，则虚拟机用3个字宽
+（Word）存储对象头，如果对象是非数组类型，则用2字宽存储对象头。在32位虚拟机中，1字宽等于4字节，即32bit
+
+Java对象头里的Mark Word里默认存储对象的HashCode、分代年龄和锁标记位。
+
+</code></pre>
+
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>锁的升级</h3>
+<pre><code>锁一共有4种状态，级别从低到高依次是：无锁状态、偏向锁状态、轻量级锁状
+态和重量级锁状态，这几个状态会随着竞争情况逐渐升级。锁可以升级但不能降级，意味着偏向锁升级成轻量级锁后不能降级成偏向锁。这种锁升级却不能降级的策略，目的是为了提高获得锁和释放锁的效率.
+
+</code></pre>
+
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>原子操作的实现原理</h3>
+<pre><code>从Java 1.5开始，JDK的并发包里提供了一些类来支持原子操作，
+如AtomicBoolean（用原子方式更新的boolean值）、AtomicInteger（用原子方式更新的int值）和AtomicLong（用原子方式更新的long值）。
+这些原子包装类还提供了有用的工具方法，比如以原子的方式将当前值自增1和
+自减1。
+
+</code></pre>
+
+<h2 id="java_2"><a name="user-content-java_2" href="#java_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java内存模型</h2>
+<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>线程之间如何通信</h3>
+<pre><code>通信是指线程之间以何种机制来交换信息。在命令式编程
+中，线程之间的通信机制有两种：共享内存和消息传递。
+在共享内存的并发模型里，线程之间共享程序的公共状态，通过写-读内存中的公共状态
+进行隐式通信。在消息传递的并发模型里，线程之间没有公共状态，线程之间必须通过发送消息来显式进行通信。
+
+</code></pre>
+
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>线程之间如何同步</h3>
+<pre><code>同步是指程序中用于控制不同线程间操作发生相对顺序的机制。
+在共享内存并发模型里，同步是显式进行的。
+程序员必须显式指定某个方法或某段代码需要在线程之间互斥执行。
+
+在消息传递的并发模型里，由于消息的发送必须在消息的接收之前，因此同步是隐式进行的。
+
+</code></pre>
+
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>内存可见性问题</h3>
+<pre><code>Java的并发采用的是共享内存模型，Java线程之间的通信总是隐式进行，整个通信过程对
+程序员完全透明。如果编写多线程程序的Java程序员不理解隐式进行的线程之间通信的工作
+机制，很可能会遇到各种奇怪的内存可见性问题。
+</code></pre>
+
+<h2 id="java_3"><a name="user-content-java_3" href="#java_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Java内存模型的抽象结构</h2>
+<pre><code>在Java中，所有实例域、静态域和数组元素都存储在堆内存中，堆内存在线程之间共享
+局部变量，方法定义参数和异常处理器参数不会在线程之间共享，它们不会有内存可见性问题。
+Java线程之间的通信由Java内存模型（本文简称为JMM）控制，JMM决定一个线程对共享
+变量的写入何时对另一个线程可见。
+</code></pre>
+
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>线程之间通信</h3>
+<pre><code>如果线程A与线程B之间要通信的话，必须要经历下面2个步骤。
+1）线程A把本地内存A中更新过的共享变量刷新到主内存中去。
+2）线程B到主内存中去读取线程A之前已更新过的共享变量。
+这两个步骤实质上是线程A在向线程B发送消息，而且这个通信过程必须要
+经过主内存。JMM通过控制主内存与每个线程的本地内存之间的交互，来为Java程序员提供
+内存可见性保证。
+</code></pre>
+
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从源代码到指令序列的重排序</h3>
+<pre><code>在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。重排序分3种类
+型。
+1）编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句
+的执行顺序。
+2）指令级并行的重排序。现代处理器采用了指令级并行技术（Instruction-Level
+Parallelism，ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应
+机器指令的执行顺序。
+3）内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上
+去可能是在乱序执行。
+
+</code></pre>
+
+<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>重排序</h3>
+<pre><code>重排序是指编译器和处理器为了优化程序性能而对指令序列进行重新排序的一种手段。
+
+编译器和处理器不会改变存在数据依赖关系的两个操作的执行顺序。
+这里所说的数据依赖性仅针对单个处理器中执行的指令序列和单个线程中执行的操作，
+不同处理器之间和不同线程之间的数据依赖性不被编译器和处理器考虑。
+
+as-if-serial语义的意思是：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）
+程序的执行结果不能被改变。编译器、runtime和处理器都必须遵守as-if-serial语义。
+as-
+if-serial语义使单线程程序员无需担心重排序会干扰他们，也无需担心内存可见性问题。
+
+如果A happens-before B，JMM并不要求A一定要在B之前执行。JMM仅仅要求前一个
+操作（执行的结果）对后一个操作可见，且前一个操作按顺序排在第二个操作之前
+
+总结：
+在单线程程序中，对存在控制依赖的操作重排序，不会改变执行结果（这也是as-if-serial
+语义允许对存在控制依赖的操作做重排序的原因）；但在多线程程序中，对存在控制依赖的操
+作重排序，可能会改变程序的执行结果。
+</code></pre>
+
+<h3 id="volatile_2"><a name="user-content-volatile_2" href="#volatile_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>volatile的内存语义</h3>
+<pre><code>线程A写一个volatile变量，实质上是线程A向接下来将要读这个volatile变量的某个线程
+发出了（其对共享变量所做修改的）消息。
+·线程B读一个volatile变量，实质上是线程B接收了之前某个线程发出的（在写这个volatile变量之前对共享变量所做修改的）消息。
+·线程A写一个volatile变量，随后线程B读这个volatile变量，这个过程实质上是线程A通过主内存向线程B发送消息。
+
+由于volatile仅仅保证对单个volatile变量的读/写具有原子性，而锁的互斥执行的特性可以
+确保对整个临界区代码的执行具有原子性。
+
+</code></pre>
+
+<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>锁的内存语义</h3>
+<pre><code>锁除了让临界区互斥执行外，还可以让释放锁的
+线程向获取同一个锁的线程发送消息。
+当线程释放锁时，JMM会把该线程对应的本地内存中的共享变量刷新到主内存中。
+当线程获取锁时，JMM会把该线程对应的本地内存置为无效。从而使得被监视器保护的
+临界区代码必须从主内存中读取共享变量。
+
+下面对锁释放和锁获取的内存语义做个总结。
+·线程A释放一个锁，实质上是线程A向接下来将要获取这个锁的某个线程发出了（线程A
+对共享变量所做修改的）消息。
+·线程B获取一个锁，实质上是线程B接收了之前某个线程发出的（在释放这个锁之前对共
+享变量所做修改的）消息。·线程A释放锁，随后线程B获取这个锁，这个过程实质上是线程A通过主内存向线程B发
+送消息。
+
+</code></pre>
+
+<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>锁内存语义的实现</h3>
+<pre><code>class ReentrantLockExample {
+    int a = 0;
+    ReentrantLock lock = new ReentrantLock();
+    public void writer() {
+        lock.lock();// 获取锁
+        try {
+            a++;
+        } finally {
+            lock.unlock();// 释放锁
+        }
+    }
+    public void reader () {
+        lock.lock();// 获取锁
+        try {
+            int i = a;
+            ……
+        } finally {
+            lock.unlock();// 释放锁
+        }
+    }
+}
+在ReentrantLock中，调用lock()方法获取锁；调用unlock()方法释放锁。
+ReentrantLock的实现依赖于Java同步器框架AbstractQueuedSynchronizer（本文简称之为
+AQS）。AQS使用一个整型的volatile变量（命名为state）来维护同步状态，马上我们会看到，这
+个volatile变量是ReentrantLock内存语义实现的关键。
+
+</code></pre>
+
+<h3 id="concurrent"><a name="user-content-concurrent" href="#concurrent" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>concurrent包的实现</h3>
+<pre><code>由于Java的CAS同时具有volatile读和volatile写的内存语义，因此Java线程之间的通信现
+在有了下面4种方式。
+1）A线程写volatile变量，随后B线程读这个volatile变量。
+2）A线程写volatile变量，随后B线程用CAS更新这个volatile变量。
+3）A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。
+4）A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。
+Java的CAS会使用现代处理器上提供的高效机器级别的原子指令，这些原子指令以原子
+方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持
+原子性读-改-写指令的计算机，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器
+都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和
+CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式。
+首先，声明共享变量为volatile。
+然后，使用CAS的原子条件更新来实现线程之间的同步。
+同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。
+AQS，非阻塞数据结构和原子变量类（java.util.concurrent.atomic包中的类），这些concurrent
+包中的基础类都是使用这种模式来实现的，而concurrent包中的高层类又是依赖于这些基础类来实现的。
+</code></pre>
+
+<h2 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>双重检查锁定</h2>
+<pre><code>非线程安全的延迟初始化对象的示例代码。
+public class UnsafeLazyInitialization {
+    private static Instance instance;
+    public static Instance getInstance() {
+        if (instance == null)               // 1：A线程执行
+            instance = new Instance();      // 2：B线程执行
+        return instance;
+    }
+}
+
+对于UnsafeLazyInitialization类，我们可以对getInstance()方法做同步处理来实现线程安全的延迟初始化。示例代码如下。
+public class SafeLazyInitialization {
+    private static Instance instance;
+    public synchronized static Instance getInstance() {
+        if (instance == null)
+            instance = new Instance();
+        return instance;
+    }
+}
+由于对getInstance()方法做了同步处理，synchronized将导致性能开销。如果getInstance()方
+法被多个线程频繁的调用，将会导致程序执行性能的下降。
+反之，如果getInstance()方法不会被
+多个线程频繁的调用，那么这个延迟初始化方案将能提供令人满意的性能。
+
+人们想通过双重检查
+锁定来降低同步的开销。下面是使用双重检查锁定来实现延迟初始化的示例代码。
+public class DoubleCheckedLocking {                      // 1
+    private static Instance instance;                    // 2
+    public static Instance getInstance() {               // 3
+        if (instance == null) {                          // 4:第一次检查
+            synchronized (DoubleCheckedLocking.class) {  // 5:加锁
+                if (instance == null)                    // 6:第二次检查
+                    instance = new Instance();          // 7:问题的根源出在这里
+            }                                            // 8
+        }                                                // 9
+        return instance;                                 // 10
+    }                                                    // 11
+}
+
+</code></pre>
+
+<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>两个办法来实现线程安全的延迟初始化</h3>
+<pre><code>1.基于volatile的解决方案
+public class SafeDoubleCheckedLocking {
+    private volatile static Instance instance;
+    public static Instance getInstance() {
+        if (instance == null) {
+            synchronized (SafeDoubleCheckedLocking.class) {
+                if (instance == null)
+                    instance = new Instance();         
+                    // instance为volatile，现在没问题了
+            }
+        }
+        return instance;
+    }
+}
+
+2.基于类初始化的解决方案
+JVM在类的初始化阶段（即在Class被加载后，且被线程使用之前），会执行类的初始化。在
+执行类的初始化期间，JVM会去获取一个锁。这个锁可以同步多个线程对同一个类的初始化。
+基于这个特性，可以实现另一种线程安全的延迟初始化方案（这个方案被称之为
+Initialization On Demand Holder idiom）。
+public class InstanceFactory {
+    private static class InstanceHolder {
+        public static Instance instance = new Instance();
+    }
+    public static Instance getInstance() {
+        return InstanceHolder.instance ;// 这里将导致InstanceHolder类被初始化
+    }
+}
+
+Java语言规范规定，对于每一个类或接口C，都有一个唯一的初始化锁LC与之对应。从C
+到LC的映射，由JVM的具体实现去自由实现。JVM在类初始化期间会获取这个初始化锁，并且
+每个线程至少获取一次锁来确保这个类已经被初始化过了
+</code></pre>
+
+<h2 id="java_4"><a name="user-content-java_4" href="#java_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java并发编程基础</h2>
+<h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>线程</h3>
+<pre><code>public class MultiThread{
+    public static void main(String[] args) {
+        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+        ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(false, false);
+        for (ThreadInfo threadInfo : threadInfos) {
+            System.out.println(&quot;[&quot; + threadInfo.getThreadId() + &quot;] &quot; + threadInfo.getThreadName());
+        }
+    }
+}
+[5] Attach Listener
+[4] Signal Dispatcher // 分发处理发送给JVM信号的线程
+[3] Finalizer   // 调用对象finalize方法的线程
+[2] Reference Handler   // 清除Reference的线程
+[1] main   // main线程，用户程序入口
+
+可以看到，一个Java程序的运行不仅仅是main()方法的运行，而是main线程和多个其他线
+程的同时运行。
+
+</code></pre>
+
+<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>线程的状态</h3>
+<pre><code>public class ThreadState {
+    public static void main(String[] args) {
+        new Thread(new TimeWaiting(), &quot;TimeWaitingThread&quot;).start();
+        new Thread(new Waiting(), &quot;WaitingThread&quot;).start();
+        // 使用两个Blocked线程，一个获取锁成功，另一个被阻塞
+        new Thread(new Blocked(), &quot;BlockedThread-1&quot;).start();
+        new Thread(new Blocked(), &quot;BlockedThread-2&quot;).start();
+    }
+
+    // 该线程不断地进行睡眠
+    static class TimeWaiting implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                SleepUtils.second(100);
+            }
+        }
+    }
+
+    // 该线程在Waiting.class实例上等待
+    static class Waiting implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                synchronized (Waiting.class) {
+                    try {
+                        Waiting.class.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    // 该线程在Blocked.class实例上加锁后，不会释放该锁
+    static class Blocked implements Runnable {
+        public void run() {
+            synchronized (Blocked.class) {
+                while (true) {
+                    SleepUtils.second(100);
+                }
+            }
+        }
+    }
+}
+
+public class SleepUtils {
+    public static final void second(long seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+        }
+    }
+}
+
+使用jstack工具（可以选择打开终端，键入jstack或者到JDK安装目录的bin目录下
+执行命令），尝试查看示例代码运行时的线程信息，更加深入地理解线程状态
+
+运行该示例，打开终端或者命令提示符，键入“jps”，输出如下。
+611 
+935 Jps
+929 ThreadState
+270
+可以看到运行示例对应的进程ID是929，接着再键入“jstack 929”
+
+// BlockedThread-2
+线程阻塞在获取
+Blocked.class
+示例的锁上
+&quot;BlockedThread-2&quot; prio=5 tid=0x00007feacb05d000 nid=0x5d03 waiting for monitor 
+entry [0x000000010fd58000]
+       java.lang.Thread.State: BLOCKED (on object monitor)
+// BlockedThread-1
+线程获取到了
+Blocked.class
+的锁
+&quot;BlockedThread-1&quot; prio=5 tid=0x00007feacb05a000 nid=0x5b03 waiting on condition 
+[0x000000010fc55000]
+       java.lang.Thread.State: TIMED_WAITING (sleeping)
+// WaitingThread
+线程在
+Waiting
+实例上等待
+&quot;WaitingThread&quot; prio=5 tid=0x00007feacb059800 nid=0x5903 in Object.wait() 
+[0x000000010fb52000]
+       java.lang.Thread.State: WAITING (on object monitor)
+// TimeWaitingThread
+线程处于超时等待
+&quot;TimeWaitingThread&quot; prio=5 tid=0x00007feacb058800 nid=0x5703 waiting on condition 
+[0x000000010fa4f000]
+       java.lang.Thread.State: TIMED_WAITING (sleeping)
+
+
+</code></pre>
+
+<h3 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>管道输入/输出流</h3>
+<pre><code>管道输入/输出流和普通的文件输入/输出流或者网络输入/输出流不同之处在于，它主要
+用于线程之间的数据传输，而传输的媒介为内存。
+管道输入/输出流主要包括了如下4种具体实现：PipedOutputStream、PipedInputStream、
+PipedReader和PipedWriter，前两种面向字节，而后两种面向字符。
+创建了printThread，它用来接受main线程的输入，任何
+main线程的输入均通过PipedWriter写入，而printThread在另一端通过PipedReader将内容读出
+并打印。
+
+package com.adanac.book.concurrency.test;
+
+import java.io.IOException;
+import java.io.PipedReader;
+import java.io.PipedWriter;
+
+public class Piped {
+    public static void main(String[] args) throws Exception {
+        PipedWriter out = new PipedWriter();
+        PipedReader in = new PipedReader();
+        // 将输出流和输入流进行连接，否则在使用时会抛出IOException
+        out.connect(in);
+        Thread printThread = new Thread(new Print(in), &quot;PrintThread&quot;);
+        printThread.start();
+        int receive = 0;
+        try {
+            while ((receive = System.in.read()) != -1) {
+                out.write(receive);
+            }
+        } finally {
+            out.close();
+        }
+    }
+
+    static class Print implements Runnable {
+        private PipedReader in;
+
+        public Print(PipedReader in) {
+            this.in = in;
+        }
+
+        public void run() {
+            int receive = 0;
+            try {
+                while ((receive = in.read()) != -1) {
+                    System.out.print((char) receive);
+                }
+            } catch (IOException ex) {
+            }
+        }
+    }
+}
+
+</code></pre>
+
+<h3 id="threadjoin"><a name="user-content-threadjoin" href="#threadjoin" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Thread.join()作用</h3>
+<pre><code>创建了10个线程，编号0~9，每个线程调用前一个线程的
+join()方法，也就是线程0结束了，线程1才能从join()方法中返回，而线程0需要等待main线程结束。
+package com.adanac.book.concurrency.test;
+
+import java.util.concurrent.TimeUnit;
+
+public class Join {
+    public static void main(String[] args) throws Exception {
+        Thread previous = Thread.currentThread();
+        for (int i = 0; i &lt; 10; i++) {
+            // 每个线程拥有前一个线程的引用，需要等待前一个线程终止，才能从等待中返回
+            Thread thread = new Thread(new Domino(previous), String.valueOf(i));
+            thread.start();
+            previous = thread;
+        }
+        TimeUnit.SECONDS.sleep(5);
+        System.out.println(Thread.currentThread().getName() + &quot; terminate.&quot;);
+    }
+
+    static class Domino implements Runnable {
+        private Thread thread;
+
+        public Domino(Thread thread) {
+            this.thread = thread;
+        }
+
+        public void run() {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+            }
+            System.out.println(Thread.currentThread().getName() + &quot; terminate.&quot;);
+        }
+    }
+}
+
+main terminate.
+0 terminate.
+1 terminate.
+2 terminate.
+3 terminate.
+4 terminate.
+5 terminate.
+6 terminate.
+7 terminate.
+8 terminate.
+9 terminate.
+
+
+</code></pre>
+
+<h3 id="threadlocal"><a name="user-content-threadlocal" href="#threadlocal" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>ThreadLocal的使用</h3>
+<pre><code>ThreadLocal，即线程变量，是一个以ThreadLocal对象为键、任意对象为值的存储结构。这
+个结构被附带在线程上，也就是说一个线程可以根据一个ThreadLocal对象查询到绑定在这个
+线程上的一个值。
+可以通过set(T)方法来设置一个值，在当前线程下再通过get()方法获取到原先设置的值。
+在代码清单4-15所示的例子中，构建了一个常用的Profiler类，它具有begin()和end()两个
+方法，而end()方法返回从begin()方法调用开始到end()方法被调用时的时间差，单位是毫秒。
+
+package com.adanac.book.concurrency.test.four;
+
+import java.util.concurrent.TimeUnit;
+
+public class Profiler {
+    // 第一次get()方法调用时会进行初始化（如果set方法没有调用），每个线程会调用一次
+    private static final ThreadLocal&lt;Long&gt; TIME_THREADLOCAL = new ThreadLocal&lt;Long&gt;() {
+        protected Long initialValue() {
+            return System.currentTimeMillis();
+        }
+    };
+
+    public static final void begin() {
+        TIME_THREADLOCAL.set(System.currentTimeMillis());
+    }
+
+    public static final long end() {
+        return System.currentTimeMillis() - TIME_THREADLOCAL.get();
+    }
+
+    public static void main(String[] args) throws Exception {
+        Profiler.begin();
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println(&quot;Cost: &quot; + Profiler.end() + &quot; mills&quot;);
+    }
+}
+Cost: 2001 mills
+应用：
+两个方法的调用不用在一个方法或者类中，比如在AOP（面
+向方面编程）中，可以在方法调用前的切入点执行begin()方法，而在方法调用后的切入点执行
+end()方法，这样依旧可以获得方法的执行耗时。
+</code></pre>
+
+<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一个简单的数据库连接池示例</h3>
+<pre><code>package com.adanac.book.concurrency.test.four;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.sql.Connection;
+import java.util.concurrent.TimeUnit;
+
+public class ConnectionDriver {
+    static class ConnectionHandler implements InvocationHandler {
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            if (method.getName().equals(&quot;commit&quot;)) {
+                TimeUnit.MILLISECONDS.sleep(100);
+            }
+            return null;
+        }
+    }
+
+    // 创建一个Connection的代理，在commit时休眠100毫秒
+    public static final Connection createConnection() {
+        return (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(),
+                new Class&lt;?&gt;[] { Connection.class }, new ConnectionHandler());
+    }
+}
+
+package com.adanac.book.concurrency.test.four;
+
+import java.sql.Connection;
+import java.util.LinkedList;
+
+public class ConnectionPool {
+    private LinkedList&lt;Connection&gt; pool = new LinkedList&lt;Connection&gt;();
+
+    public ConnectionPool(int initialSize) {
+        if (initialSize &gt; 0) {
+            for (int i = 0; i &lt; initialSize; i++) {
+                pool.addLast(ConnectionDriver.createConnection());
+            }
+        }
+    }
+
+    public void releaseConnection(Connection connection) {
+        if (connection != null) {
+            synchronized (pool) {
+                // 连接释放后需要进行通知，这样其他消费者能够感知到连接池中已经归还了一个连接
+                pool.addLast(connection);
+                pool.notifyAll();
+            }
+        }
+    }
+
+    // 在mills内无法获取到连接，将会返回null
+    public Connection fetchConnection(long mills) throws InterruptedException {
+        synchronized (pool) {
+            // 完全超时
+            if (mills &lt;= 0) {
+                while (pool.isEmpty()) {
+                    pool.wait();
+                }
+                return pool.removeFirst();
+            } else {
+                long future = System.currentTimeMillis() + mills;
+                long remaining = mills;
+                while (pool.isEmpty() &amp;&amp; remaining &gt; 0) {
+                    pool.wait(remaining);
+                    remaining = future - System.currentTimeMillis();
+                }
+                Connection result = null;
+                if (!pool.isEmpty()) {
+                    result = pool.removeFirst();
+                }
+                return result;
+            }
+        }
+    }
+}
+
+package com.adanac.book.concurrency.test.four;
+
+import java.sql.Connection;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class ConnectionPoolTest {
+    static ConnectionPool pool = new ConnectionPool(10);
+    // 保证所有ConnectionRunner能够同时开始
+    static CountDownLatch start = new CountDownLatch(1);
+    // main线程将会等待所有ConnectionRunner结束后才能继续执行
+    static CountDownLatch end;
+
+    public static void main(String[] args) throws Exception {
+        // 线程数量，可以修改线程数量进行观察
+        int threadCount = 50;
+        end = new CountDownLatch(threadCount);
+        int count = 20;
+        AtomicInteger got = new AtomicInteger();
+        AtomicInteger notGot = new AtomicInteger();
+        for (int i = 0; i &lt; threadCount; i++) {
+            Thread thread = new Thread(new ConnetionRunner(count, got, notGot), &quot;ConnectionRunnerThread&quot;);
+            thread.start();
+        }
+        start.countDown();
+        end.await();
+        System.out.println(&quot;total invoke: &quot; + (threadCount * count));
+        System.out.println(&quot;got connection:  &quot; + got);
+        System.out.println(&quot;not got connection &quot; + notGot);
+    }
+
+    static class ConnetionRunner implements Runnable {
+        int count;
+        AtomicInteger got;
+        AtomicInteger notGot;
+
+        public ConnetionRunner(int count, AtomicInteger got, AtomicInteger notGot) {
+            this.count = count;
+            this.got = got;
+            this.notGot = notGot;
+        }
+
+        public void run() {
+            try {
+                start.await();
+            } catch (Exception ex) {
+            }
+            while (count &gt; 0) {
+                try {
+                    // 从线程池中获取连接，如果1000ms内无法获取到，将会返回null
+                    // 分别统计连接获取的数量got和未获取到的数量notGot
+                    Connection connection = pool.fetchConnection(1000);
+                    if (connection != null) {
+                        try {
+                            connection.createStatement();
+                            connection.commit();
+                        } finally {
+                            pool.releaseConnection(connection);
+                            got.incrementAndGet();
+                        }
+                    } else {
+                        notGot.incrementAndGet();
+                    }
+                } catch (Exception ex) {
+                } finally {
+                    count--;
+                }
+            }
+            end.countDown();
+        }
+    }
+}
+
+在资源一定的情况下（连接池中的10个连接），随着客户端
+线程的逐步增加，客户端出现超时无法获取连接的比率不断升高。虽然客户端线程在这种超
+时获取的模式下会出现连接无法获取的情况，但是它能够保证客户端线程不会一直挂在连接
+获取的操作上，而是“按时”返回，并告知客户端连接获取出现问题，是系统的一种自我保护机
+制。数据库连接池的设计也可以复用到其他的资源获取的场景，针对昂贵资源（比如数据库连
+接）的获取都应该加以超时限制。
+</code></pre>
+
+<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>线程池技术及其示例</h3>
+<pre><code>对于服务端的程序，经常面对的是客户端传入的短小（执行时间短、工作内容较为单一）
+任务，需要服务端快速处理并返回结果。如果服务端每次接受到一个任务，创建一个线程，然
+后进行执行，这在原型阶段是个不错的选择，但是面对成千上万的任务递交进服务器时，如果
+还是采用一个任务一个线程的方式，那么将会创建数以万记的线程，这不是一个好的选择。因
+为这会使操作系统频繁的进行线程上下文切换，无故增加系统的负载，而线程的创建和消亡
+都是需要耗费系统资源的，也无疑浪费了系统资源。
+线程池技术能够很好地解决这个问题，它预先创建了若干数量的线程，并且不能由用户
+直接对线程的创建进行控制，在这个前提下重复使用固定或较为固定数目的线程来完成任务
+的执行。这样做的好处是，一方面，消除了频繁创建和消亡线程的系统资源开销，另一方面，
+面对过量任务的提交能够平缓的劣化。
+下面先看一个简单的线程池接口定义
+
+package com.adanac.book.concurrency.test.four;
+
+public interface ThreadPool&lt;Job extends Runnable&gt; {
+    // 执行一个Job，这个Job需要实现Runnable
+    void execute(Job job);
+    // 关闭线程池
+    void shutdown();
+    // 增加工作者线程
+    void addWorkers(int num);
+    // 减少工作者线程
+    void removeWorker(int num);
+    // 得到正在等待执行的任务数量
+    int getJobSize();
+}
+
+package com.adanac.book.concurrency.test.four;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+
+public class DefaultThreadPool&lt;Job extends Runnable&gt; implements ThreadPool&lt;Job&gt; {
+    // 线程池最大限制数
+    private static final int MAX_WORKER_NUMBERS = 10;
+    // 线程池默认的数量
+    private static final int DEFAULT_WORKER_NUMBERS = 5;
+    // 线程池最小的数量
+    private static final int MIN_WORKER_NUMBERS = 1;
+    // 这是一个工作列表，将会向里面插入工作
+    private final LinkedList&lt;Job&gt; jobs = new LinkedList&lt;Job&gt;();
+    // 工作者列表
+    private final List&lt;Worker&gt; workers = Collections.synchronizedList(new ArrayList&lt;Worker&gt;());
+    // 工作者线程的数量
+    private int workerNum = DEFAULT_WORKER_NUMBERS;
+    // 线程编号生成
+    private AtomicLong threadNum = new AtomicLong();
+
+    public DefaultThreadPool() {
+        initializeWokers(DEFAULT_WORKER_NUMBERS);
+    }
+
+    public DefaultThreadPool(int num) {
+        workerNum = num &gt; MAX_WORKER_NUMBERS ? MAX_WORKER_NUMBERS : num &lt; MIN_WORKER_NUMBERS ? MIN_WORKER_NUMBERS : num;
+        initializeWokers(workerNum);
+    }
+
+    public void execute(Job job) {
+        if (job != null) {
+            // 添加一个工作，然后进行通知
+            synchronized (jobs) {
+                jobs.addLast(job);
+                jobs.notify();
+            }
+        }
+    }
+
+    public void shutdown() {
+        for (Worker worker : workers) {
+            worker.shutdown();
+        }
+    }
+
+    public void addWorkers(int num) {
+        synchronized (jobs) {
+            // 限制新增的Worker数量不能超过最大值
+            if (num + this.workerNum &gt; MAX_WORKER_NUMBERS) {
+                num = MAX_WORKER_NUMBERS - this.workerNum;
+            }
+            initializeWokers(num);
+            this.workerNum += num;
+        }
+    }
+
+    public void removeWorker(int num) {
+        synchronized (jobs) {
+            if (num &gt;= this.workerNum) {
+                throw new IllegalArgumentException(&quot;beyond workNum&quot;);
+            }
+            // 按照给定的数量停止Worker
+            int count = 0;
+            while (count &lt; num) {
+                Worker worker = workers.get(count);
+                if (workers.remove(worker)) {
+                    worker.shutdown();
+                    count++;
+                }
+            }
+            this.workerNum -= count;
+        }
+    }
+
+    public int getJobSize() {
+        return jobs.size();
+    }
+
+    // 初始化线程工作者
+    private void initializeWokers(int num) {
+        for (int i = 0; i &lt; num; i++) {
+            Worker worker = new Worker();
+            workers.add(worker);
+            Thread thread = new Thread(worker, &quot;ThreadPool-Worker-&quot; + threadNum.incrementAndGet());
+            thread.start();
+        }
+    }
+
+    // 工作者，负责消费任务
+    class Worker implements Runnable {
+        // 是否工作
+        private volatile boolean running = true;
+
+        public void run() {
+            while (running) {
+                Job job = null;
+                synchronized (jobs) {
+                    // 如果工作者列表是空的，那么就wait
+                    while (jobs.isEmpty()) {
+                        try {
+                            jobs.wait();
+                        } catch (InterruptedException ex) {
+                            // 感知到外部对WorkerThread的中断操作，返回
+                            Thread.currentThread().interrupt();
+                            return;
+                        }
+                    }
+                    // 取出一个Job
+                    job = jobs.removeFirst();
+                }
+                if (job != null) {
+                    try {
+                        job.run();
+                    } catch (Exception ex) {
+                        // 忽略Job执行中的Exception
+                    }
+                }
+            }
+        }
+
+        public void shutdown() {
+            running = false;
+        }
+    }
+}
+线程池的本质就是使用了一个线程安全的工作队列连接工作者线程和客户端
+线程，客户端线程将任务放入工作队列后便返回，而工作者线程则不断地从工作队列上取出工作并执行。当工作队列为空时，所有的工作者线程均等待在工作队列上，当有客户端提交了一个任务之后会通知任意一个工作者线程，随着大量的任务被提交，更多的工作者线程会被唤醒。
+</code></pre>
+
+<h3 id="web"><a name="user-content-web" href="#web" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一个基于线程池技术的简单Web服务器</h3>
+<pre><code>目前的浏览器都支持多线程访问，比如说在请求一个HTML页面的时候，页面中包含的图
+片资源、样式资源会被浏览器发起并发的获取，这样用户就不会遇到一直等到一个图片完全下载完成才能继续查看文字内容的尴尬情况。
+下面通过使用前一节中的线程池来构造一个简单的Web服务器，这个Web服务器用来处理
+HTTP请求，目前只能处理简单的文本和JPG图片内容。这个Web服务器使用main线程不断地接受客户端Socket的连接，将连接以及请求提交给线程池处理，这样使得Web服务器能够同时处理多个客户端请求
+package com.adanac.book.concurrency.test.four;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SimpleHttpServer {
+    // 处理HttpRequest的线程池
+    static ThreadPool&lt;HttpRequestHandler&gt; threadPool = new DefaultThreadPool&lt;HttpRequestHandler&gt;(1);
+    // SimpleHttpServer的根路径
+    static String basePath;
+    static ServerSocket serverSocket;
+    // 服务监听端口
+    static int port = 8080;
+
+    public static void setPort(int port) {
+        if (port &gt; 0) {
+            SimpleHttpServer.port = port;
+        }
+    }
+
+    public static void setBasePath(String basePath) {
+        if (basePath != null &amp;&amp; new File(basePath).exists() &amp;&amp; new File(basePath).isDirectory()) {
+            SimpleHttpServer.basePath = basePath;
+        }
+    }
+
+    // 启动SimpleHttpServer
+    public static void start() throws Exception {
+        serverSocket = new ServerSocket(port);
+        Socket socket = null;
+        while ((socket = serverSocket.accept()) != null) {
+            // 接收一个客户端Socket，生成一个HttpRequestHandler，放入线程池执行
+            threadPool.execute(new HttpRequestHandler(socket));
+        }
+        serverSocket.close();
+    }
+
+    static class HttpRequestHandler implements Runnable {
+        private Socket socket;
+
+        public HttpRequestHandler(Socket socket) {
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            String line = null;
+            BufferedReader br = null;
+            BufferedReader reader = null;
+            PrintWriter out = null;
+            InputStream in = null;
+            try {
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String header = reader.readLine();
+                // 由相对路径计算出绝对路径
+                String filePath = basePath + header.split(&quot; &quot;)[1];
+                out = new PrintWriter(socket.getOutputStream());
+                // 如果请求资源的后缀为jpg或者ico，则读取资源并输出
+                if (filePath.endsWith(&quot;jpg&quot;) || filePath.endsWith(&quot;ico&quot;)) {
+                    in = new FileInputStream(filePath);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    int i = 0;
+                    while ((i = in.read()) != -1) {
+                        baos.write(i);
+                    }
+                    byte[] array = baos.toByteArray();
+                    out.println(&quot;HTTP/1.1 200 OK&quot;);
+                    out.println(&quot;Server: Molly&quot;);
+                    out.println(&quot;Content-Type: image/jpeg&quot;);
+                    out.println(&quot;Content-Length: &quot; + array.length);
+                    out.println(&quot;&quot;);
+                    socket.getOutputStream().write(array, 0, array.length);
+                } else {
+                    br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
+                    out = new PrintWriter(socket.getOutputStream());
+                    out.println(&quot;HTTP/1.1 200 OK&quot;);
+                    out.println(&quot;Server: Molly&quot;);
+                    out.println(&quot;Content-Type: text/html; charset=UTF-8&quot;);
+                    out.println(&quot;&quot;);
+                    while ((line = br.readLine()) != null) {
+                        out.println(line);
+                    }
+                }
+                out.flush();
+            } catch (Exception ex) {
+                out.println(&quot;HTTP/1.1 500&quot;);
+                out.println(&quot;&quot;);
+                out.flush();
+            } finally {
+                close(br, in, reader, out, socket);
+            }
+        }
+    }
+
+    // 关闭流或者Socket
+    private static void close(Closeable... closeables) {
+        if (closeables != null) {
+            for (Closeable closeable : closeables) {
+                try {
+                    closeable.close();
+                } catch (Exception ex) {
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        String rootPath = System.getProperty(&quot;user.dir&quot;);
+        System.err.println(rootPath);
+        SimpleHttpServer.setBasePath(rootPath + &quot;\\src\\main\\webapp\\&quot;);
+        SimpleHttpServer.start();
+    }
+}
+
+index.html:
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;测试页面&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;第一张图片&lt;/h1&gt;&lt;img src=&quot;images/meizi.jpg&quot;  /&gt;
+    &lt;h1&gt;第二张图片&lt;/h1&gt;&lt;img src=&quot;images/pic.jpg&quot;  /&gt;
+    &lt;h1&gt;第三张图片&lt;/h1&gt;&lt;img src=&quot;images/pic2.jpg&quot;  /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="java_5"><a name="user-content-java_5" href="#java_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java中的锁</h2>
+<h3 id="_31"><a name="user-content-_31" href="#_31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_33"><a name="user-content-_33" href="#_33" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_35"><a name="user-content-_35" href="#_35" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="java_6"><a name="user-content-java_6" href="#java_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java并发容器与框架</h2>
+<h3 id="_37"><a name="user-content-_37" href="#_37" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_40"><a name="user-content-_40" href="#_40" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_41"><a name="user-content-_41" href="#_41" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_42"><a name="user-content-_42" href="#_42" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="java13"><a name="user-content-java13" href="#java13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java中的13个原子操作类</h2>
+<h3 id="_43"><a name="user-content-_43" href="#_43" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_44"><a name="user-content-_44" href="#_44" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_45"><a name="user-content-_45" href="#_45" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_46"><a name="user-content-_46" href="#_46" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_47"><a name="user-content-_47" href="#_47" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_48"><a name="user-content-_48" href="#_48" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="java_7"><a name="user-content-java_7" href="#java_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java中的并发工具类</h2>
+<h3 id="_49"><a name="user-content-_49" href="#_49" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_50"><a name="user-content-_50" href="#_50" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_51"><a name="user-content-_51" href="#_51" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_52"><a name="user-content-_52" href="#_52" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_53"><a name="user-content-_53" href="#_53" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_54"><a name="user-content-_54" href="#_54" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="java_8"><a name="user-content-java_8" href="#java_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java中的线程池</h2>
+<h3 id="_55"><a name="user-content-_55" href="#_55" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_56"><a name="user-content-_56" href="#_56" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_57"><a name="user-content-_57" href="#_57" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_58"><a name="user-content-_58" href="#_58" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_59"><a name="user-content-_59" href="#_59" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="executor"><a name="user-content-executor" href="#executor" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>executor框架</h2>
+<h3 id="_60"><a name="user-content-_60" href="#_60" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_61"><a name="user-content-_61" href="#_61" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_62"><a name="user-content-_62" href="#_62" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_63"><a name="user-content-_63" href="#_63" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_64"><a name="user-content-_64" href="#_64" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h2 id="java_9"><a name="user-content-java_9" href="#java_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>java并发编程实践</h2>
+<h3 id="_65"><a name="user-content-_65" href="#_65" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_66"><a name="user-content-_66" href="#_66" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_67"><a name="user-content-_67" href="#_67" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_68"><a name="user-content-_68" href="#_68" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_69"><a name="user-content-_69" href="#_69" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre>
+
+<h3 id="_70"><a name="user-content-_70" href="#_70" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a></h3>
+<pre><code>
+</code></pre></article></body></html>
