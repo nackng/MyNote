@@ -1203,147 +1203,720 @@ ReentrantReadWriteLock和CountDownLatch等）。
 它简化了锁的实现方式，屏蔽了同步状态管理、线程的排队、等待与唤醒等底层操作。锁和同
 步器很好地隔离了使用者和实现者所需关注的领域。
 ```
-###
+###同步队列的实现分析
 ```
+1.同步队列
+同步器依赖内部的同步队列（一个FIFO双向队列）来完成同步状态的管理，当前线程获取
+同步状态失败时，同步器会将当前线程以及等待状态等信息构造成为一个节点（Node）并将其
+加入同步队列，同时会阻塞当前线程，当同步状态释放时，会把首节点中的线程唤醒，使其再
+次尝试获取同步状态。
+同步队列中的节点（Node）用来保存获取同步状态失败的线程引用、等待状态以及前驱和
+后继节点
+
+节点是构成同步队列（等待队列）的基础，同步器拥有首节点（head）
+和尾节点（tail），没有成功获取同步状态的线程将会成为节点加入该队列的尾部。
+
 ```
-###
+###重入锁ReentrantLock
 ```
+就是支持重进入的锁，它表示该锁能够支持一个线程对
+资源的重复加锁。除此之外，该锁的还支持获取锁时的公平和非公平性选择。
+
+重进入是指任意线程在获取到锁之后能够再次获取该锁而不会被锁所阻塞，该特性的实
+现需要解决以下两个问题。
+1）线程再次获取锁。锁需要去识别获取锁的线程是否为当前占据锁的线程，如果是，则再
+次成功获取。
+2）锁的最终释放。线程重复n次获取了锁，随后在第n次释放该锁后，其他线程能够获取到
+该锁。锁的最终释放要求锁对于获取进行计数自增，计数表示当前锁被重复获取的次数，而锁被释放时，计数自减，当计数等于0时表示锁已经成功释放。
+
 ```
-###
+###读写锁
 ```
-```
-###
-```
-```
-###
-```
-```
-###
-```
-```
-###
-```
-```
-###
-```
-```
-###
-```
-```
-###
-```
+之前提到锁（如Mutex和ReentrantLock）基本都是排他锁，这些锁在同一时刻只允许一个线程进行访问，
+而读写锁在同一时刻可以允许多个读线程访问，但是在写线程访问时，所有的读线程和其他写线程均被阻塞。读写锁维护了一对锁，一个读锁和一个写锁，通过分离读锁和写
+锁，使得并发性相比一般的排他锁有了很大提升。
+
+在读操作时获取读锁，写操作时获取写锁即可
+
 ```
 
+
 ##java并发容器与框架
-###
+###ConcurrentHashMap的实现原理与使用
 ```
+ConcurrentHashMap是线程安全且高效的HashMap。
+（1）线程不安全的HashMap
+在多线程环境下，使用HashMap进行put操作会引起死循环，导致CPU利用率接近100%，所
+以在并发情况下不能使用HashMap。例如，执行以下代码会引起死循环。
+HashMap在并发执行put操作时会引起死循环，是因为多线程会导致HashMap的Entry链表
+形成环形数据结构，一旦形成环形数据结构，Entry的next节点永远不为空，就会产生死循环获取Entry。
+（2）效率低下的HashTable
+HashTable容器使用synchronized来保证线程安全，但在线程竞争激烈的情况下HashTable
+的效率非常低下。因为当一个线程访问HashTable的同步方法，其他线程也访问HashTable的同步方法时，会进入阻塞或轮询状态。如线程1使用put进行元素添加，线程2不但不能使用put方法添加元素，也不能使用get方法来获取元素，所以竞争越激烈效率越低。
+
 ```
-###
+###ConcurrentHashMap的结构
 ```
+通过ConcurrentHashMap的类图来分析ConcurrentHashMap的结构，如图6-1所示。
+ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segment是一种可重
+入锁（ReentrantLock），在ConcurrentHashMap里扮演锁的角色；HashEntry则用于存储键值对数
+据。一个ConcurrentHashMap里包含一个Segment数组。
+每个Segment守护着一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，
+必须首先获得与它对应的Segment锁.
+
+ConcurrentHashMap初始化方法是通过initialCapacity、loadFactor和concurrencyLevel等几个
+参数来初始化segment数组、段偏移量segmentShift、段掩码segmentMask和每个segment里的
+HashEntry数组来实现的。
+
 ```
-###
+###ConcurrentHashMap的操作
 ```
+ConcurrentHashMap的3种操作——get操作、put操作和size操作。
+
+定义成volatile的变量，能够在线
+程之间保持可见性，能够被多线程同时读，并且保证不会读到过期的值，但是只能被单线程写
+（有一种情况可以被多线程写，就是写入的值不依赖于原值），在get操作里只需要读不需要写
+共享变量count和value，所以可以不用加锁。
 ```
-###
+###ConcurrentLinkedQueue
 ```
+ConcurrentLinkedQueue是一个基于链接节点的无界线程安全队列，它采用先进先出的规
+则对节点进行排序，当我们添加一个元素的时候，它会添加到队列的尾部；当我们获取一个元
+素时，它会返回队列头部的元素。它采用了“wait-free”算法（即CAS算法）来实现，该算法在
+Michael&Scott算法上进行了一些修改。
+ConcurrentLinkedQueue由head节点和tail节点组成，每个节点（Node）由节点元素（item）和指向下一个节点（next）的引用组成，节点与节点之间就是通过这个next关联起来，从而组成一张链表结构的队列.
+
+入队列就是将入队节点添加到队列的尾部。
+发现入队主要做两件事情：第一是
+将入队节点设置成当前队列尾节点的下一个节点；第二是更新tail节点.
+入队方法永远返回true，所以不要通过返回值判断入队是否成功。
+
+出队列的就是从队列里返回一个节点元素，并清空该节点对元素的引用。
+当head节点里有元素时，直接弹出head
+节点里的元素，而不会更新head节点。只有当head节点里没有元素时，出队操作才会更新head节点。
 ```
-###
+###java中的阻塞队列
 ```
+JDK 7提供了7个阻塞队列，如下。
+·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。
+·LinkedBlockingQueue：一个由链表结构组成的有界阻塞队列。
+·PriorityBlockingQueue：一个支持优先级排序的无界阻塞队列。
+·DelayQueue：一个使用优先级队列实现的无界阻塞队列。
+·SynchronousQueue：一个不存储元素的阻塞队列。
+·LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。
+·LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。
+
+阻塞队列的实现原理：
+使用通知模式实现。所谓通知模式，就是当生产者往满的队列里添加元素时会阻塞住生
+产者，当消费者消费了一个队列中的元素后，会通知生产者当前队列可用。
 ```
-###
+###Fork/Join框架
 ```
+Fork/Join框架是Java 7提供的一个用于并行执行任务的框架，是一个把大任务分割成若干
+个小任务，最终汇总每个小任务结果后得到大任务结果的框架。
+
+实例一：使用Fork/Join框架，需求是：计算1+2+3+4的结果
+package com.adanac.book.concurrency.test.six;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.Future;
+import java.util.concurrent.RecursiveTask;
+
+public class CountTask extends RecursiveTask<Integer> {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    private static final int THRESHOLD = 2;
+
+    // 阈值
+    private int start;
+    private int end;
+
+    public CountTask(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected Integer compute() {
+        int sum = 0;
+        // 如果任务足够小就计算任务
+        boolean canCompute = (end - start) <= THRESHOLD;
+        if (canCompute) {
+            for (int i = start; i <= end; i++) {
+                sum += i;
+            }
+        } else {
+            // 如果任务大于阈值，就分裂成两个子任务计算
+            int middle = (start + end) / 2;
+            CountTask leftTask = new CountTask(start, middle);
+            CountTask rightTask = new CountTask(middle + 1, end);
+            // 执行子任务
+            leftTask.fork();
+            rightTask.fork();
+            // 等待子任务执行完，并得到其结果
+            int leftResult = leftTask.join();
+            int rightResult = rightTask.join();
+            // 合并子任务
+            sum = leftResult + rightResult;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        // 生成一个计算任务，负责计算1+2+3+4
+        CountTask task = new CountTask(1, 4);
+        // 执行一个任务
+        Future<Integer> result = forkJoinPool.submit(task);
+        try {
+            System.out.println(result.get());
+        } catch (InterruptedException e) {
+        } catch (ExecutionException e) {
+        }
+    }
+}
+
+ForkJoinTask，ForkJoinTask与一般任务的主要区别在于它
+需要实现compute方法，在这个方法里，首先需要判断任务是否足够小，如果足够小就直接执
+行任务。如果不足够小，就必须分割成两个子任务，每个子任务在调用fork方法时，又会进入
+compute方法，看看当前子任务是否需要继续分割成子任务，如果不需要继续分割，则执行当
+前子任务并返回结果。使用join方法会等待子任务执行完并得到其结果。
 ```
 
 ##java中的13个原子操作类
-###
+###原子更新基本类型
 ```
+原子的方式更新基本类型，Atomic包提供了以下3个类。
+·AtomicBoolean：原子更新布尔类型。
+·AtomicInteger：原子更新整型。
+·AtomicLong：原子更新长整型。
 ```
-###
+###原子更新数组
 ```
-```
-###
-```
-```
-###
-```
-```
-###
-```
-```
-###
-```
-```
+·AtomicIntegerArray：原子更新整型数组里的元素。
+·AtomicLongArray：原子更新长整型数组里的元素。
+·AtomicReferenceArray：原子更新引用类型数组里的元素。
+·AtomicIntegerArray类主要是提供原子的方式更新数组里的整型
 
+import java.util.concurrent.atomic.AtomicIntegerArray;
+
+public class AtomicIntegerArrayTest {
+    static int[] value = new int[] { 1, 2 };
+    static AtomicIntegerArray ai = new AtomicIntegerArray(value);
+
+    public static void main(String[] args) {
+        ai.getAndSet(0, 3);
+        System.out.println(ai.get(0));
+        System.out.println(value[0]);
+    }
+}
+3
+1
+数组value通过构造方法传递进去，然后AtomicIntegerArray会将当前数组
+复制一份，所以当AtomicIntegerArray对内部的数组元素进行修改时，不会影响传入的数组。
+```
+###原子更新引用类型
+```
+AtomicReference：原子更新引用类型。
+·AtomicReferenceFieldUpdater：原子更新引用类型里的字段。
+·AtomicMarkableReference：原子更新带有标记位的引用类型。可以原子更新一个布尔类
+型的标记位和引用类型。构造方法是AtomicMarkableReference（V initialRef，boolean
+initialMark）。
+
+```
+###原子更新字段类
+```
+如果需原子地更新某个类里的某个字段时，就需要使用原子更新字段类，Atomic包提供
+了以下3个类进行原子字段更新。
+·AtomicIntegerFieldUpdater：原子更新整型的字段的更新器。
+·AtomicLongFieldUpdater：原子更新长整型字段的更新器。
+·AtomicStampedReference：原子更新带有版本号的引用类型。
+```
 ##java中的并发工具类
-###
+###等待多线程完成的CountDownLatch
 ```
+CountDownLatch允许一个或多个线程等待其他线程完成操作。
+假如有这样一个需求：我们需要解析一个Excel里多个sheet的数据，此时可以考虑使用多
+线程，每个线程解析一个sheet里的数据，等到所有的sheet都解析完之后，程序需要提示解析完
+成。在这个需求中，要实现主线程等待所有线程完成sheet的解析操作，最简单的做法是使用join()方法
+package com.adanac.book.concurrency.test.eight;
+
+public class JoinCountDownLatchTest {
+    public static void main(String[] args) throws InterruptedException {
+        Thread parser1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("parser1 finish");
+            }
+        });
+        Thread parser2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("parser2 finish");
+            }
+        });
+        parser1.start();
+        parser2.start();
+        parser1.join();
+        parser2.join();
+        System.out.println("all parser finish");
+    }
+}
+
+join用于让当前执行线程等待join线程执行结束。其实现原理是不停检查join线程是否存
+活，如果join线程存活则让当前线程永远等待。其中，wait（0）表示永远等待下去，代码片段如下。
+while (isAlive()) {
+    wait(0);
+}
+
 ```
-###
+###同步屏障CyclicBarrier
 ```
+CyclicBarrier的应用场景
+CyclicBarrier可以用于多线程计算数据，最后合并计算结果的场景。例如，用一个Excel保
+存了用户所有银行流水，每个Sheet保存一个账户近一年的每笔银行流水，现在需要统计用户
+的日均银行流水，先用多线程处理每个sheet里的银行流水，都执行完之后，得到每个sheet的日
+均银行流水，最后，再用barrierAction用这些线程的计算结果，计算出整个Excel的日均银行流水:
+
+package com.adanac.book.concurrency.test.eight;
+
+import java.util.Map.Entry;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+/**
+ * 银行流水处理服务类
+ * 
+ */
+public class BankWaterService implements Runnable {
+    /**
+     *  创建4 个屏障，处理完之后执行当前类的run方法
+     */
+    private CyclicBarrier c = new CyclicBarrier(4, this);
+    /**
+     *  假设只有4个  sheet，所以只启动4个线程
+     */
+    private Executor executor = Executors.newFixedThreadPool(4);
+    /**
+     *  保存每个sheet计算出的银流结果
+     */
+    private ConcurrentHashMap<String, Integer> sheetBankWaterCount = new ConcurrentHashMap<String, Integer>();
+
+    private void count() {
+        for (int i = 0; i < 4; i++) {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    // 计算当前sheet的银流数据，计算代码省略
+                    sheetBankWaterCount.put(Thread.currentThread().getName(), 1);
+                    // 银流计算完成，插入一个屏障
+                    try {
+                        c.await();
+                    } catch (InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public void run() {
+        int result = 0;
+        // 汇总每个 sheet 计算出的结果
+        for (Entry<String, Integer> sheet : sheetBankWaterCount.entrySet()) {
+            result += sheet.getValue();
+        }
+        // 将结果输出
+        sheetBankWaterCount.put("result", result);
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        BankWaterService bankWaterCount = new BankWaterService();
+        bankWaterCount.count();
+    }
+}
+
+使用线程池创建4个线程，分别计算每个sheet里的数据，每个sheet计算结果是1，再由
+BankWaterService线程汇总4个sheet计算出的结果4.
 ```
-###
+###CyclicBarrier和CountDownLatch的区别
 ```
+CountDownLatch的计数器只能使用一次，而CyclicBarrier的计数器可以使用reset()方法重
+置。所以CyclicBarrier能处理更为复杂的业务场景。例如，如果计算发生错误，可以重置计数
+器，并让线程重新执行一次。
+
 ```
-###
+###控制并发线程数的Semaphore
 ```
+Semaphore（信号量）是用来控制同时访问特定资源的线程数量，它通过协调各个线程，以
+保证合理的使用公共资源。
+
+1.应用场景
+Semaphore可以用于做流量控制，特别是公用资源有限的应用场景，比如数据库连接。假
+如有一个需求，要读取几万个文件的数据，因为都是IO密集型任务，我们可以启动几十个线程并发地读取，但是如果读到内存后，还需要存储到数据库中，而数据库的连接数只有10个，这时我们必须控制只有10个线程同时获取数据库连接保存数据，否则会报错无法获取数据库连接。这个时候，就可以使用Semaphore来做流量控制
+
+package com.adanac.book.concurrency.test.eight;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
+
+public class SemaphoreTest {
+    private static final int THREAD_COUNT = 30;
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_COUNT);
+    /**
+     * Semaphore（10）表示允许10个线程获取许可证，也就是最大并发数是10
+     */
+    private static Semaphore s = new Semaphore(10);
+
+    public static void main(String[] args) {
+        for (int i = 0; i < THREAD_COUNT; i++) {
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        s.acquire();
+                        System.out.println("save data");
+                        s.release();
+                    } catch (InterruptedException e) {
+                    }
+                }
+            });
+        }
+        threadPool.shutdown();
+    }
+}
+虽然有30个线程在执行，但是只允许10个并发执行。Semaphore的构造方法
+Semaphore（int permits）接受一个整型的数字，表示可用的许可证数量。Semaphore（10）表示允
+许10个线程获取许可证，也就是最大并发数是10。
 ```
-###
+###线程间交换数据的Exchanger
 ```
-```
-###
-```
-```
+Exchanger（交换者）是一个用于线程间协作的工具类。Exchanger用于进行线程间的数据交换。它提供一个同步点，在这个同步点，两个线程可以交换彼此的数据。这两个线程通过exchange方法交换数据，如果第一个线程先执行exchange()方法，它会一直等待第二个线程也
+执行exchange方法，当两个线程都到达同步点时，这两个线程就可以交换数据，将本线程生产出来的数据传递给对方。
+
+Exchanger的应用场景。
+Exchanger可以用于遗传算法，遗传算法里需要选出两个人作为交配对象，这时候会交换
+两人的数据，并使用交叉规则得出2个交配结果。Exchanger也可以用于校对工作，比如我们需
+要将纸制银行流水通过人工的方式录入成电子银行流水，为了避免错误，采用AB岗两人进行录入，录入到Excel之后，系统需要加载这两个Excel，并对两个Excel数据进行校对，看看是否录入一致
+
+package com.adanac.book.concurrency.test.eight;
+
+import java.util.concurrent.Exchanger;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExchangerTest {
+    private static final Exchanger<String> exgr = new Exchanger<String>();
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(2);
+
+    public static void main(String[] args) {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String A = "银行流水A";
+                    // A录入银行流水数据
+                    exgr.exchange(A);
+                } catch (InterruptedException e) {
+                }
+            }
+        });
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String B = "银行流水B";
+                    // B录入银行流水数据
+                    String A = exgr.exchange("B");
+                    System.out.println("AB数据是否一致：" + A.equals(B) + "，A录入的是：" + A + "，B录入是：" + B);
+                } catch (InterruptedException e) {
+                }
+            }
+        });
+        threadPool.shutdown();
+    }
+}
 
 ##java中的线程池
-###
 ```
+合理地使用线程池能够带来3个好处。
+第一：降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
+第二：提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。
+第三：提高线程的可管理性。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，
+还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。
 ```
-###
+###线程池的实现原理
 ```
+1）线程池判断核心线程池里的线程是否都在执行任务。如果不是，则创建一个新的工作
+线程来执行任务。如果核心线程池里的线程都在执行任务，则进入下个流程。
+2）线程池判断工作队列是否已经满。如果工作队列没有满，则将新提交的任务存储在这
+个工作队列里。如果工作队列满了，则进入下个流程。
+3）线程池判断线程池的线程是否都处于工作状态。如果没有，则创建一个新的工作线程
+来执行任务。如果已经满了，则交给饱和策略来处理这个任务。
+
 ```
-###
+###线程池的创建
 ```
+new  ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime,
+milliseconds,runnableTaskQueue, handler);
+
 ```
-###
+###向线程池提交任务
 ```
+可以使用两个方法向线程池提交任务，分别为execute()和submit()方法。
+execute()方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功。
+
+threadsPool.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                                // TODO Auto-generated method stub
+                        }
+                });
+
+submit()方法用于提交需要返回值的任务。
+Future<Object> future = executor.submit(harReturnValuetask);
+                try {
+                        Object s = future.get();
+                } catch (InterruptedException e) {
+                        // 
+处理中断异常
+                } catch (ExecutionException e) {
+                        // 
+处理无法执行任务异常
+                } finally {
+                        // 
+关闭线程池
+                        executor.shutdown();
+                }
 ```
-###
+###关闭线程池
 ```
+可以通过调用线程池的shutdown或shutdownNow方法来关闭线程池。它们的原理是遍历线
+程池中的工作线程，然后逐个调用线程的interrupt方法来中断线程，所以无法响应中断的任务可能永远无法终止。
+
+```
+###合理地配置线程池
+```
+要想合理地配置线程池，就必须首先分析任务特性，可以从以下几个角度来分析。
+·任务的性质：CPU密集型任务、IO密集型任务和混合型任务。
+·任务的优先级：高、中和低。
+·任务的执行时间：长、中和短。
+·任务的依赖性：是否依赖其他系统资源，如数据库连接。
+
 ```
 
 ##executor框架
-###
 ```
+Java的线程既是工作单元，也是执行机制。从JDK 5开始，把工作单元与执行机制分离开
+来。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。
 ```
-###
+###Executor框架的结构
+````
+Executor框架主要由3大部分组成如下。
+任务。包括被执行任务需要实现的接口：Runnable接口或Callable接口。
+·任务的执行。包括任务执行机制的核心接口Executor，以及继承自Executor的
+ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口
+（ThreadPoolExecutor和ScheduledThreadPoolExecutor）。
+·异步计算的结果。包括接口Future和实现Future接口的FutureTask类。
 ```
+###Executor框架的主要成员
 ```
-###
-```
-```
-###
-```
-```
-###
-```
-```
+ThreadPoolExecutor、ScheduledThreadPoolExecutor、
+Future接口、Runnable接口、Callable接口和Executors。
+（1）ThreadPoolExecutor
+ThreadPoolExecutor通常使用工厂类Executors来创建。
+1）FixedThreadPool。下面是Executors提供的，创建使用固定线程数的FixedThreadPool的API。
+public static ExecutorService newFixedThreadPool(int nThreads)
+public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactorythreadFactory)
+FixedThreadPool适用于为了满足资源管理的需求，而需要限制当前线程数量的应用场
+景，它适用于负载比较重的服务器。
 
+
+2）SingleThreadExecutor。下面是Executors提供的，创建使用单个线程的SingleThread-
+Executor的API。
+public static ExecutorService newSingleThreadExecutor()
+public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory)
+SingleThreadExecutor适用于需要保证顺序地执行各个任务；并且在任意时间点，不会有多个线程是活动的应用场景。
+
+3）CachedThreadPool。下面是Executors提供的，创建一个会根据需要创建新线程的
+CachedThreadPool的API。
+public static ExecutorService newCachedThreadPool()
+public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory)
+CachedThreadPool是大小无界的线程池，适用于执行很多的短期异步任务的小程序，或者
+是负载较轻的服务器。
+
+（2）ScheduledThreadPoolExecutor
+ScheduledThreadPoolExecutor。包含若干个线程的ScheduledThreadPoolExecutor。
+·SingleThreadScheduledExecutor。只包含一个线程的ScheduledThreadPoolExecutor。
+
+创建固定个数线程的ScheduledThreadPoolExecutor的API:
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize)
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize,ThreadFactory)
+
+创建单个线程的SingleThreadScheduledExecutor的API:
+public static ScheduledExecutorService newSingleThreadScheduledExecutor()
+public static ScheduledExecutorService newSingleThreadScheduledExecutor
+(ThreadFactory threadFactory)
+
+```
+###ThreadPoolExecutor详解
+```
+通过Executor框架的工具类Executors，可以创建3种类型的ThreadPoolExecutor。
+·FixedThreadPool。
+·SingleThreadExecutor。
+·CachedThreadPool。
+
+```
+####FixedThreadPool详解
+```
+FixedThreadPool被称为可重用固定线程数的线程池。
+```
+####SingleThreadExecutor详解
+```
+SingleThreadExecutor是使用单个worker线程的Executor。
+```
+####CachedThreadPool详解
+```
+CachedThreadPool是一个会根据需要创建新线程的线程池。
+```
+###ScheduledThreadPoolExecutor详解
+```
+ScheduledThreadPoolExecutor继承自ThreadPoolExecutor。它主要用来在给定的延迟之后运行任务，或者定期执行任务。ScheduledThreadPoolExecutor的功能与Timer类似，但
+ScheduledThreadPoolExecutor功能更强大、更灵活。Timer对应的是单个后台线程，而
+ScheduledThreadPoolExecutor可以在构造函数中指定多个对应的后台线程数。
+```
+###FutureTask详解
+```
+Future接口和实现Future接口的FutureTask类，代表异步计算的结果。
+FutureTask除了实现Future接口外，还实现了Runnable接口。因此，FutureTask可以交给
+Executor执行，也可以由调用线程直接执行（FutureTask.run()）。根据FutureTask.run()方法被执行
+的时机，FutureTask可以处于下面3种状态。
+1）未启动。FutureTask.run()方法还没有被执行之前，FutureTask处于未启动状态。当创建一
+个FutureTask，且没有执行FutureTask.run()方法之前，这个FutureTask处于未启动状态。
+2）已启动。FutureTask.run()方法被执行的过程中，FutureTask处于已启动状态。
+3）已完成。FutureTask.run()方法执行完后正常结束，或被取消（FutureTask.cancel（…）），或
+执行FutureTask.run()方法时抛出异常而异常结束，FutureTask处于已完成状态。
+
+```
 ##java并发编程实践
-###
+###生产者和消费者模式
 ```
+生产者和消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消
+费者彼此之间不直接通信，而是通过阻塞队列来进行通信，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而是直接从阻塞队列里取，阻塞队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。
+
+这个阻塞队列就是用来给生产者和消费者解耦的。纵观大多数设计模式，都会找一个第
+三者出来进行解耦，如工厂模式的第三者是工厂类，模板模式的第三者是模板类。在学习一些设计模式的过程中，先找到这个模式的第三者，能帮助我们快速熟悉一个设计模式。
+
 ```
-###
+###线程池与生产消费者模式
 ```
+ava中的线程池类其实就是一种生产者和消费者模式的实现方式，但是我觉得其实现方
+式更加高明。生产者把任务丢给线程池，线程池创建线程并处理任务，如果将要运行的任务数大于线程池的基本线程数就把任务扔到阻塞队列里，这种做法比只使用一个阻塞队列来实现生产者和消费者模式显然要高明很多，因为消费者能够处理直接就处理掉了，这样速度更快，而生产者先存，消费者再取这种方式显然慢一些。
+
 ```
-###
+###线上问题定位
 ```
+有时候，有很多问题只有在线上或者预发环境才能发现，而线上又不能调试代码，所以线
+上问题定位就只能看日志、系统状态和dump线程.
+
+1）在Linux命令行下使用TOP命令查看每个进程的情况
+我们的程序是Java应用，所以只需要关注COMMAND是Java的性能数据，COMMAND表
+示启动当前进程的命令，在Java进程这一行里可以看到CPU利用率是300%，不用担心，这个是当前机器所有核加在一起的CPU利用率。
+
+2）再使用top的交互命令数字1查看每个CPU的性能数据。
+令行显示了CPU4，说明这是一个5核的虚拟机，平均每个CPU利用率在60%以上。如果
+这里显示CPU利用率100%，则很有可能程序里写了一个死循环。
+
+3）使用top的交互命令H查看每个线程的性能信息。
+在这里可能会出现3种情况。
+·第一种情况，某个线程CPU利用率一直100%，则说明是这个线程有可能有死循环，那么
+请记住这个PID。
+·第二种情况，某个线程一直在TOP 10的位置，这说明这个线程可能有性能问题。
+·第三种情况，CPU利用率高的几个线程在不停变化，说明并不是由某一个线程导致CPU
+偏高。
+
+a)如果是第一种情况，也有可能是GC造成，
+可以用jstat命令看一下GC情况，看看是不是因
+为持久代或年老代满了，产生Full GC，导致CPU利用率持续飙高，命令和回显如下。
+sudo /opt/java/bin/jstat -gcutil 31177 1000 5
+
+还可以把线程dump下来，看看究竟是哪个线程、执行什么代码造成的CPU利用率高。执行
+以下命令，把线程dump到文件dump17里。执行如下命令。
+sudo -u admin /opt/taobao/java/bin/jstack  31177 > /home/adanac/dump17
+dump出来的线程ID（nid）是十六进制的，而我们用TOP命令看到的线程ID是十进制的，所
+以要用printf命令转换一下进制。然后用十六进制的ID去dump里找到对应的线程。
+printf "%x\n" 31558
+输出：7b46。
+
+
 ```
-###
+###性能测试
 ```
+性能测试工具进行测试，该工具的原理
+是，用户写一个Java程序向服务器端发起请求，这个工具会启动一个线程池来调度这些任务，可以配置同时启动多少个线程、发起请求次数和任务间隔时长。将这个程序部署在多台机器上执行，统计出QPS和响应时长。我们在10台机器上部署了这个测试程序，每台机器启动了100个线程进行测试，压测时长为半小时。注意不能压测线上机器，我们压测的是开发服务器。
+测试开始后，首先登录到服务器里查看当前有多少台机器在压测服务器，因为程序的端
+口是12200，所以使用netstat命令查询有多少台机器连接到这个端口上。命令如下。
+$ netstat -nat | grep 12200 –c
+10
+
+通过这个命令可以知道已经有10台机器在压测服务器。QPS达到了1400，程序开始报错获
+取不到数据库连接，因为我们的数据库端口是3306，用netstat命令查看已经使用了多少个数据库连接。命令如下。
+$ netstat -nat | grep 3306 –c
+12
+
+增加数据库连接到20，QPS没上去，但是响应时长从平均1000毫秒下降到700毫秒，使用
+TOP命令观察CPU利用率，发现已经90%多了，于是升级CPU，将2核升级成4核，和线上的机器保持一致。再进行压测，CPU利用率下去了达到了75%，QPS上升到了1800。执行一段时间后响应时长稳定在200毫秒。
+增加应用服务器里线程池的核心线程数和最大线程数到1024，通过ps命令查看下线程数
+是否增长了，执行的命令如下。
+$ ps -eLf | grep java -c
+1520
+
+再次压测，QPS并没有明显的增长，单机QPS稳定在1800左右，响应时长稳定在200毫秒。
+我在性能测试之前先优化了程序的SQL语句。使用了如下命令统计执行最慢的SQL，左边
+的是执行时长，单位是毫秒，右边的是执行的语句，可以看到系统执行最慢的SQL是
+queryNews和queryNewIds，优化到几十毫秒。
+$ grep Y /home/admin/logs/xxx/monitor/dal-rw-monitor.log |awk -F',' '{print $7$5}' |
+sort -nr|head -20
+1811 queryNews
+1764 queryNews
+1740 queryNews
+1697 queryNews
+679 queryNewIds
+
+
 ```
-###
+###性能测试中使用的其他命令
 ```
+1）查看网络流量。
+$ cat /proc/net/dev
+
+2）查看系统平均负载。
+$ cat /proc/loadavg
+
+3）查看系统内存情况。
+$ cat /proc/meminfo
+
+4）查看CPU的利用率。
+cat /proc/stat
+
 ```
-###
+###异步任务池
 ```
+Java中的线程池设计得非常巧妙，可以高效并发执行多个任务，但是在某些场景下需要对
+线程池进行扩展才能更好地服务于系统。例如，如果一个任务仍进线程池之后，运行线程池的程序重启了，那么线程池里的任务就会丢失。另外，线程池只能处理本机的任务，在集群环境下不能有效地调度所有机器的任务。所以，需要结合线程池开发一个异步任务处理池.
+任务池的主要处理流程是，每台机器会启动一个任务池，每个任务池里有多个线程池，当
+某台机器将一个任务交给任务池后，任务池会先将这个任务保存到数据中，然后某台机器上
+的任务池会从数据库中获取待执行的任务，再执行这个任务。
+每个任务有几种状态，分别是创建（NEW）、执行中（EXECUTING）、RETRY（重试）、挂起
+（SUSPEND）、中止（TEMINER）和执行完成（FINISH）。
 ```
