@@ -3,7 +3,6 @@
 ```
 https://github.com/adanac/mavenWeb
 可通过mybatis-generator根据数据库表自动生成mapper文件。
-
 ```
 ###配置多个数据源
 ```
@@ -159,6 +158,4 @@ partition2.testOnBorrow=true
 partition2.validationQuery=select now()
 partition2.timeBetweenEvictionRunsMillis=60000
 partition2.minEvictableIdleTimeMillis=180000
-
-
 ```

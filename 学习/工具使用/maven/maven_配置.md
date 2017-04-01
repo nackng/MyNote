@@ -1,0 +1,19 @@
+[TOC]
+##父项目与子项目的配置
+pom父项目中配置
+<configuration>
+    <port>${server.port}</port>
+</configuration>
+web子项目中配置
+<properties>
+    <server.port>8088</server.port>
+</properties>
+sys-service子项目中配置
+<properties>
+    <server.port>8087</server.port>
+</properties>
+scheduler-service子项目中配置
+<properties>
+    <server.port>8089</server.port>
+</properties>
+##

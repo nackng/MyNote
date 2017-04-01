@@ -1,0 +1,1864 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>前后交互_common</title></head><body><article class="markdown-body"><div class="toc">
+<ul>
+<li><a href="#list-checkbox">前台根据后台的list 动态 生成 checkbox</a></li>
+<li><a href="#_1">设置全局变量</a></li>
+<li><a href="#_2">前台传多个参数到后台</a></li>
+<li><a href="#dto">前台传数组到后台(通过dto转换)</a></li>
+<li><a href="#dto_1">前台传数组到后台(不通过dto转换)</a></li>
+<li><a href="#_3">保存列表信息</a></li>
+<li><a href="#ajax-postform-datarequest-payloadservlet">AJAX POST请求中参数以form data和request payload形式在servlet中的获取方式</a></li>
+<li><a href="#ajax-post">使用原生AJAX POST请求</a></li>
+<li><a href="#_4">服务器为什么会对表单提交和文件上传做特殊处理</a></li>
+</ul>
+</div>
+<h2 id="list-checkbox"><a name="user-content-list-checkbox" href="#list-checkbox" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>前台根据后台的list 动态 生成 checkbox</h2>
+<pre><code>1.后台获取 list
+配置文件：price.user.properties:
+
+银卡会员=1
+金卡会员=2
+铂金卡会员=3
+黑金卡会员=4
+
+
+package com.haiziwang.jplugin.study.Util;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+
+
+public class PropertiesUtil {
+
+private static Properties priceUserProperties = new Properties();
+
+private static Properties modelSelfProperties = new Properties();
+
+private PropertiesUtil() {
+}
+
+static {
+try {
+InputStream isUser = PropertiesUtil.class.getResourceAsStream(&quot;/config/price.user.properties&quot;);
+BufferedReader bfUser = new BufferedReader(new InputStreamReader(isUser, &quot;UTF-8&quot;));
+priceUserProperties.load(bfUser);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+
+public static String get(String key) {
+String value = &quot;&quot;;
+if (properties.containsKey(key)) {
+value = properties.getProperty(key);
+}
+return value;
+}
+
+public static String get(String key, String defaultValue) {
+return properties.getProperty(key, defaultValue);
+}
+
+public static void reomve(String key) {
+properties.remove(key);
+}
+
+public static String userGet(String key) {
+String value = &quot;&quot;;
+if (userProperties.containsKey(key)) {
+value = userProperties.getProperty(key);
+}
+return value;
+}
+
+public static String userGet(String key, String defaultValue) {
+return userProperties.getProperty(key, defaultValue);
+}
+
+public static void userRemove(String key) {
+userProperties.remove(key);
+}
+
+public static List&lt;String&gt; getAllUserLevel() {
+List&lt;String&gt; res = new LinkedList&lt;String&gt;();
+Set&lt;Entry&lt;Object, Object&gt;&gt; entrySet = priceUserProperties.entrySet();
+for (Entry&lt;Object, Object&gt; entry : entrySet) {
+res.add(entry.getKey() + &quot;:&quot; + entry.getValue());
+}
+return res;
+}
+
+public static String priceUserPropertiesGet(String key) {
+String value = &quot;&quot;;
+if (priceUserProperties.containsKey(key)) {
+value = priceUserProperties.getProperty(key);
+}
+return value;
+}
+
+public static boolean priceUserPropertiesContainsKey(String key) {
+return priceUserProperties.containsKey(key);
+}
+}
+
+package com.haiziwang.jplugin.study.dbo.model;
+import java.io.Serializable;
+public class UserLevelEntity implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4647282480206966874L;
+    private String levelName;
+    private String levelValue;
+    public String getLevelName() {
+        return levelName;
+    }
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
+    }
+    public String getLevelValue() {
+        return levelValue;
+    }
+    public void setLevelValue(String levelValue) {
+        this.levelValue = levelValue;
+    }
+}
+
+
+/**
+     * 获取用户等级
+     */
+    public void getUserLevel() {
+        RespJson resjon = new RespJson();
+        try {
+            List&lt;UserLevelEntity&gt; levelList = new LinkedList&lt;&gt;();
+            List&lt;String&gt; userLevel = PropertiesUtil.getAllUserLevel();
+            if (userLevel != null &amp;&amp; userLevel.size() &gt; 0) {
+                resjon.setResultCode(&quot;1&quot;);
+                for (String level : userLevel) {
+                    UserLevelEntity levelEntity = new UserLevelEntity();
+                    levelEntity.setLevelName(level.split(&quot;:&quot;)[0]);
+                    levelEntity.setLevelValue(level.split(&quot;:&quot;)[1]);
+                    levelList.add(levelEntity);
+                }
+                resjon.setDatabody(levelList);
+            } else {
+                resjon.setResultCode(&quot;0&quot;);
+                resjon.setMsg(&quot;no data&quot;);
+            }
+        } catch (Exception e) {
+            resjon.setResultCode(&quot;0&quot;);
+            resjon.setMsg(&quot;Query userLevel error&quot;);
+        }
+        renderJson(JSON.toJSONString(resjon));     } 
+
+
+http://localhost:8083/jplugin-study/oprom/getUserLevel.do
+{&quot;databody&quot;:[{&quot;levelName&quot;:&quot;黑金卡会员&quot;,&quot;levelValue&quot;:&quot;4&quot;},{&quot;levelName&quot;:&quot;铂金卡会员&quot;,&quot;levelValue&quot;:&quot;3&quot;},{&quot;levelName&quot;:&quot;金卡会员&quot;,&quot;levelValue&quot;:&quot;2&quot;},{&quot;levelName&quot;:&quot;银卡会员&quot;,&quot;levelValue&quot;:&quot;1&quot;}],&quot;msg&quot;:&quot;&quot;,&quot;resultCode&quot;:&quot;1&quot;,&quot;size&quot;:0,&quot;totalRecord&quot;:0}
+
+
+
+
+2.页面组织数据
+&lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-md-12&quot;&gt;
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label class=&quot;control-label col-md-2&quot; style=&quot;margin-top:10px;&quot;&gt;促销对象:&lt;/label&gt;
+                        &lt;div class=&quot;col-md-8 md-checkbox-inline&quot; id=&quot;userLevelDiv&quot;&gt;
+
+                            &lt;%--
+                            &lt;c:forEach items=&quot;${userLevelList}&quot; var=&quot;userLevel&quot;&gt;
+                                &lt;div class=&quot;md-checkbox&quot;&gt;
+                                &lt;input type=&quot;checkbox&quot; id=&quot;ckMem1&quot; name=&quot;promobj&quot; class=&quot;md-checkboxbtn&quot; value=&quot;${userLevel.levelValue}&quot; /&gt;
+                                &lt;label for=&quot;ckMem1&quot;&gt;
+                                &lt;span&gt;&lt;/span&gt;
+                                &lt;span class=&quot;check&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;box&quot;&gt;&lt;/span&gt;
+                                ${userLevel.levelName}&lt;/label&gt;
+                            &lt;/div&gt;
+                            &lt;/c:forEach&gt;
+                       --%&gt;
+
+
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;             &lt;/div&gt;  
+
+
+
+$(document).ready(function(){
+        var userLevelList = getUserLevel();
+        console.log('%cuserLevelList:'+userLevelList,&quot;font-size:90px;color:#888&quot;);  
+
+});
+
+
+function getUserLevel(){
+        var levelList = [];
+        $.ajax({
+            url:$ctx +'/oprom/getUserLevel.do',
+            dataType:'json',
+            cache:false,
+            type:'get',
+            async:false,
+            success:function(data){
+                if(data.resultCode == &quot;1&quot;){
+                    var divContent = &quot;&quot;;
+                    var userList = data.databody;
+                    for(var i = 0; i&lt;userList.length; i++){
+                        levelList.push(userList[i]);
+                        divContent += &quot;&lt;div class='md-checkbox'&gt;&lt;input type='checkbox' id='ckMem&quot;+i+&quot;' name='promobj' class='md-checkboxbtn' value='&quot;+userList[i].levelValue+&quot;' /&gt;&lt;label for='ckMem&quot;+i+&quot;'&gt;&lt;span&gt;&lt;/span&gt;&lt;span class='check'&gt;&lt;/span&gt;&lt;span class='box'&gt;&lt;/span&gt;&quot;+userList[i].levelName+&quot;&lt;/label&gt;&lt;/div&gt;&quot;
+                    }
+                    console.log('divContent:'+divContent);
+                    $(&quot;#userLevelDiv&quot;).html(divContent);
+                }else{
+                    alert(data.msg);
+                }
+            }
+        });
+        return levelList;     }  
+
+</code></pre>
+
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设置全局变量</h2>
+<pre><code>
+</code></pre>
+
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>前台传多个参数到后台</h2>
+<pre><code>方式一：以字符串的方式如&quot;12,13,14&quot;
+1.前台组织数据：
+//循环select下拉框，获得所有的text值
+var sellerids = &quot;&quot;;
+$(&quot;#selectedSellers option&quot;).each(function(){
+sellerids += $(this).val() + &quot;,&quot;;
+});
+
+sellerids = sellerids.substring(0,sellerids.lastIndexOf(&quot;,&quot;));
+sellerids = JSON.stringify(sellerids);
+console.log(&quot;sellerids:&quot;+sellerids);
+2.后台解析数据
+String sellerids = getParam(&quot;sellerids&quot;);
+String[] selleridArray = sellerids.split(&quot;,&quot;);
+for (String sellid : selleridArray) {
+                for (SkuInfoPo skuinfo : resp.getSkuInfoList()) {
+                    if (sellid.equals(String.valueOf(skuinfo.getOrdinaryInfo().getCooperatorId()))) {
+                        sbSku.append(skuinfo.getSkuId()).append(&quot;,&quot;);
+                        break;
+                    }
+                }
+            } 
+
+
+
+方式二：以字符数组的形式如[&quot;12&quot;,&quot;13&quot;,&quot;14&quot;]
+1.前台组织数据：
+//循环select下拉框，获得所有的text值
+        var sellerids = [];
+        $(&quot;#selectedSellers option&quot;).each(function(){
+            sellerids.push($(this).val());
+        });
+        sellerids = JSON.stringify(sellerids);         console.log(&quot;sellerids:&quot;+sellerids);  
+
+2.后台解析数据：
+String sellerInclude = getParam(&quot;sellerids&quot;); JSONArray sellerIncludeList = JSONArray.parseArray(sellerInclude); 
+Vector&lt;uint64_t&gt; sellerVector = new Vector&lt;uint64_t&gt;();
+        if (sellerIncludeList != null) {
+            for (int i = 0; i &lt; sellerIncludeList.size(); i++) {
+                sellerVector.add(new uint64_t(sellerIncludeList.getLongValue(i)));
+            }
+        } 
+</code></pre>
+
+<h2 id="dto"><a name="user-content-dto" href="#dto" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>前台传数组到后台(通过dto转换)</h2>
+<pre><code>主要通过 com.alibaba.fastjson.JSONArray 的
+List&lt;CompEntity&gt; compEntity = JSONArray.parseArray(compList, CompEntity.class);
+
+1.前端页面：
+&lt;div id=&quot;include_off_Category&quot; class=&quot;row&quot; style=&quot;margin-bottom:0px;&quot;&gt;
+    &lt;div class=&quot;col-md-12&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label class=&quot;control-label col-md-2&quot;&gt;线下参与品类：&lt;/label&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                &lt;div class=&quot;col-md-2&quot; style=&quot;width:480px; height:225px; overflow:auto;  float:left;&quot;&gt;
+                    &lt;table id=&quot;dataTableDetail&quot; class=&quot;table table-striped table-bordered table-hover&quot; border=&quot;1&quot; cellspacing=&quot;1&quot; align=&quot;center&quot;&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;品类编码&lt;/td&gt;&lt;td&gt;品类名称&lt;/td&gt;&lt;td&gt;供应商承担比例&lt;/td&gt;&lt;td&gt;操作&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                &lt;div class=&quot;col-md-2&quot; style=&quot;width:100px; height:225px; float:left;&quot;&gt;
+                    &lt;a href=&quot;#&quot; id=&quot;autocomplete&quot; data-target=&quot;#myModal_autocomplete&quot; role=&quot;button&quot; class=&quot;btn green&quot; data-toggle=&quot;modal&quot; style=&quot;margin-left:15px;&quot;&gt;批量导入&lt;/a&gt;
+                    &lt;br/&gt;
+                    &lt;br/&gt;
+                    &lt;button id=&quot;tjpl&quot; type=&quot;button&quot; class=&quot;btn green&quot; onclick=&quot;addTRow()&quot; style=&quot;margin-left:15px;&quot;&gt;添加品类&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;div class=&quot;col-md-2&quot; id=&quot;msg_div&quot; style=&quot;height:225px;&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+2.前端js:                
+var cateInCompList = [];//包含品类
+cateInCompList = getCateInCompList();
+//包含品类补偿信息
+    function getCateInCompList(){
+        var compensateList = [];
+        var caTrs = $(&quot;#dataTableDetail tbody tr&quot;);
+        for(var i=1; i &lt; caTrs.length; i++){
+            var td1 = $(caTrs[i]).children().first().find('input').first().val();//品类编码
+            var td2  = $(caTrs[i]).children().eq(2).find('input').first().val();//分摊比例
+            if(td1 != &quot;&quot; &amp;&amp; td2 != &quot;&quot;){
+                var comp = {};
+                comp.compCode = td1;
+                comp.agioRate = td2;
+                compensateList.push(comp);
+            }
+        }
+        return compensateList;
+    }
+
+cateInCompList = encodeURI(JSON.stringify(cateInCompList));
+$.ajax({
+            url:$ctx +'/oprom/promotionCreate.do',
+            data:{
+                &quot;cateInCompList&quot;:cateInCompList//品类补偿
+            },
+            dataType:'json',
+            cache:false,
+            type:'post',
+            success:function(data){
+                if(data.resultCode == &quot;1&quot;){
+                    alert(data.msg);
+                    //location.href = $ctx +&quot;/views/ocanal/ruleList.jsp&quot;;
+                }else{
+                    alert(data.msg);
+                }
+            }
+        });
+    });
+
+3.后台java解析
+
+com.haiziwang.jplugin.study.dbo.model.CompEntity:
+public class CompEntity implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5683590129909725697L;
+    private String compCode;// 编码
+    private String suppCode;// 供应商编码
+    private String agioRate;// 比例
+    private String specCost;// 价格
+
+    public String getCompCode() {
+        return compCode;
+    }
+
+    public void setCompCode(String compCode) {
+        this.compCode = compCode;
+    }
+
+    public String getSuppCode() {
+        return suppCode;
+    }
+
+    public void setSuppCode(String suppCode) {
+        this.suppCode = suppCode;
+    }
+
+    public String getAgioRate() {
+        return agioRate;
+    }
+
+    public void setAgioRate(String agioRate) {
+        this.agioRate = agioRate;
+    }
+
+    public String getSpecCost() {
+        return specCost;
+    }
+
+    public void setSpecCost(String specCost) {
+        this.specCost = specCost;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;CompEntity [compCode=&quot; + compCode + &quot;, suppCode=&quot; + suppCode + &quot;, agioRate=&quot; + agioRate + &quot;, specCost=&quot;
+                + specCost + &quot;]&quot;;
+    }
+
+}
+
+Controller:
+String compList = getParam(&quot;cateInCompList&quot;);
+
+compList = java.net.URLDecoder.decode(compList, &quot;UTF-8&quot;);
+
+if (!NormalUtil.isNullOrEmpty(compList)) {
+    compEntity = JSONArray.parseArray(compList, CompEntity.class);
+}
+if (null != compEntity &amp;&amp; compEntity.size() &gt; 0) {
+    for (CompEntity comp : compEntity) {
+        CompensateInfoPo compPo = new CompensateInfoPo();
+        compPo.setGoodsId(comp.getCompCode());
+        if (null != comp.getAgioRate()) {
+            compPo.setAgioRate(Long.valueOf(comp.getAgioRate()));
+        }
+        compensateList.add(compPo);
+    }
+    compenVector.addAll(compensateList);
+    rulePo.setCompensateList(compenVector);
+}
+
+</code></pre>
+
+<h2 id="dto_1"><a name="user-content-dto_1" href="#dto_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>前台传数组到后台(不通过dto转换)</h2>
+<pre><code>主要通过 com.alibaba.fastjson.JSONArray 的
+JSONArray jsonArray = JSONArray.parseArray(arrGift);
+
+1.前台页面：
+&lt;div class=&quot;row&quot; id=&quot;giftDiv1&quot;&gt;
+    &lt;div class=&quot;col-md-12&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label class=&quot;control-label col-md-2&quot;&gt;&amp;nbsp;&lt;/label&gt;
+                &lt;div class=&quot;col-md-7&quot;&gt;
+                    &lt;table class=&quot;table table-hover table-bordered table-striped&quot; id=&quot;sample_gift1&quot;&gt;
+                        &lt;thead&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;
+                                     商品编号
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     商品名称
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     售价
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     成本价
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                    数量
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     操作
+                                &lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row&quot; id=&quot;giftDiv2&quot;&gt;
+    &lt;div class=&quot;col-md-12&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label class=&quot;control-label col-md-2&quot;&gt;&amp;nbsp;&lt;/label&gt;
+                &lt;div class=&quot;col-md-7&quot;&gt;
+                    &lt;table class=&quot;table table-hover table-bordered table-striped&quot; id=&quot;sample_gift2&quot;&gt;
+                        &lt;thead&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;
+                                     商品编号
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     商品名称
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     售价
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     成本价
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     换购价
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                    数量
+                                &lt;/th&gt;
+                                &lt;th&gt;
+                                     操作
+                                &lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+2.前台js:
+//赠品的信息集合-begin
+var arrGift = &quot;[&quot;;//new Array();
+var type = $(&quot;#ruleType option:selected&quot;).val();
+var tag = type == 6?1:2;
+$('#sample_gift'+tag+' tbody tr').each(function(index,obj)
+{
+    var skuidGift = $(obj).attr(&quot;skuid&quot;);
+    if(skuid == skuidGift){
+        isRet = true;
+    }
+
+    if(tag == 1){
+        var skutitleGift = $(obj).attr(&quot;skutitle&quot;);
+        var erpCode = $(obj).attr(&quot;erpCode&quot;);
+        var areaPrice = $(&quot;#areaPrice&quot; + skuidGift ).attr(&quot;val&quot;);
+        var num = $(&quot;#num_gift_&quot; + skuidGift).val();
+        var json = &quot;{'skuid':'&quot; + skuidGift + &quot;','skutitle':'&quot;+ encodeURI(skutitleGift) + &quot;','areaPrice':'&quot; + areaPrice + &quot;','num':'&quot; + num + &quot;','erpCode':'&quot; + erpCode + &quot;'}&quot;;
+    }else{
+        var skutitleGift = $(obj).attr(&quot;skutitle&quot;);
+        var erpCode = $(obj).attr(&quot;erpCode&quot;);
+        var areaPrice = $(&quot;#areaPrice&quot; + skuidGift ).attr(&quot;val&quot;);
+        var itemPrice = $(&quot;#itemPrice&quot;).val(); 
+        var num = $(&quot;#num_gift_num&quot;).val();
+        var json = &quot;{'skuid':'&quot; + skuidGift + &quot;','skutitle':'&quot;+ encodeURI(skutitleGift) + &quot;','areaPrice':'&quot; + areaPrice + &quot;','itemPrice':'&quot; + itemPrice + &quot;','num':'&quot; + num + &quot;','erpCode':'&quot; + erpCode + &quot;'}&quot;;
+    }
+
+    //arrGift[index] = json;
+    if(index &gt; 0)
+    {
+        json = &quot;,&quot; + json;
+    }
+    arrGift += json;
+});
+arrGift+=&quot;]&quot;;
+//赠品的信息集合-end
+
+$.ajax({
+        url:$ctx + '/singlepm/add.do',
+        data:{
+            &quot;arrGift&quot;:arrGift
+            },
+        dataType:'json',
+        cache:false,
+        type:'post',
+        success:function(data){
+            if(data.resultCode == &quot;1&quot;){
+                alert(data.msg);
+                //location.href = $ctx + &quot;/views/singlepm/singleList.jsp&quot;;
+            }
+            else if (data.resultCode == &quot;0&quot;){
+                alert(data.msg);
+            }
+        }
+    });
+
+3.后台java解析
+String arrGift = getParam(&quot;arrGift&quot;);
+JSONArray jsonArray = JSONArray.parseArray(arrGift);
+for (int i = 0; i &lt; jsonArray.size(); i++) {
+    PlusItemPo plusItemPo = new PlusItemPo();
+    JSONObject jsonObject = jsonArray.getJSONObject(i);
+    plusItemPo.setSkuId(jsonObject.getLongValue(&quot;skuid&quot;));
+    plusItemPo.setItemName(NormalUtil.decodeToString(jsonObject.getString(&quot;skutitle&quot;)));
+    plusItemPo.setItemNum(jsonObject.getLongValue(&quot;num&quot;));
+    plusItemPo.setItemUnitPrice(NormalUtil.formatYuanByFen(jsonObject.getString(&quot;areaPrice&quot;)));
+    plusItemPo.setErpCode(jsonObject.getString(&quot;erpCode&quot;));
+    uint64_t t = new uint64_t(jsonObject.getLongValue(&quot;skuid&quot;));
+    if (ruleType.equals(SinglePmEnum.RULE_TYPE_7.getValue())) {
+        plusItemPo.setItemPmPrice(NormalUtil.formatYuanByFen(jsonObject.getString(&quot;itemPrice&quot;)));
+    }
+    plusItemList.put(t, plusItemPo);
+}
+
+</code></pre>
+
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>保存列表信息</h2>
+<pre><code>var paramJson = encodeURI(JSON.stringify(goodsList));  //前端编码
+$.ajax({  
+url:'${base}/cr/addCouponGoods.do?ruleId='+ruleId,// 跳转到 action
+data:{&quot;paramJson&quot;:paramJson},
+}
+
+/**
+* 批量添加条码券商品
+* 
+* @param request
+* @param response
+* @return
+*/
+@RequestMapping(value = &quot;addCouponGoods&quot;, produces = &quot;text/html;charset=UTF-8&quot;)
+public void addCouponGoods(HttpServletRequest request, HttpServletResponse response,
+@RequestParam String paramJson) {
+// 获取参数
+Map&lt;String, Object&gt; result = new HashMap&lt;String, Object&gt;();
+try {
+CompanyInfoDto merchantInfo = getMerchantInfo(request);
+String companyId = Long.toString(merchantInfo.getCompanyId());
+String ruleId = request.getParameter(&quot;ruleId&quot;);
+paramJson = java.net.URLDecoder.decode(paramJson, &quot;utf-8&quot;);
+log.info(&quot;DisRuleAction====&gt;addCouponGoods====&gt;paramJson:&quot; + paramJson.toString());
+// JSONObject jsonObject = JSONObject.fromObject(paramJson);
+net.sf.json.JSONArray data = net.sf.json.JSONArray.fromObject(paramJson);
+
+
+BaseResult br = disRuleService.addCouponGoods(data, ruleId, companyId);
+if (br.getStatus().equals(MmcConstants.REG_SUCC)) {
+result.put(STATUS, SUCCESS);
+result.put(MESSAGE, &quot;操作成功&quot;);
+} else {
+result.put(STATUS, ERROR);
+result.put(MESSAGE, &quot;操作失败&quot;);
+}
+</code></pre>
+
+<h2 id="ajax-postform-datarequest-payloadservlet"><a name="user-content-ajax-postform-datarequest-payloadservlet" href="#ajax-postform-datarequest-payloadservlet" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>AJAX POST请求中参数以form data和request payload形式在servlet中的获取方式</h2>
+<pre><code>HTTP请求中，如果是get请求，那么表单参数以name=value&amp;name1=value1的形式附到url的后面，如果是 post请求，那么表单参数是在请求体中，也是以name=value&amp;name1=value1的形式在请求体中。通过chrome的开发者工 具可以看到如下（这里是可读的形式，不是真正的HTTP请求协议的请求格式）：
+
+
+1.get请求：
+
+RequestURL:http://127.0.0.1:8080/test/test.do?name=mikan&amp;address=street  
+Request Method:GET  
+Status Code:200 OK  
+
+Request Headers  
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8  
+Accept-Encoding:gzip,deflate,sdch  
+Accept-Language:zh-CN,zh;q=0.8,en;q=0.6  
+AlexaToolbar-ALX_NS_PH:AlexaToolbar/alxg-3.2  
+Connection:keep-alive  
+Cookie:JSESSIONID=74AC93F9F572980B6FC10474CD8EDD8D  
+Host:127.0.0.1:8080  
+Referer:http://127.0.0.1:8080/test/index.jsp  
+User-Agent:Mozilla/5.0 (Windows NT 6.1)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.149 Safari/537.36  
+
+Query String Parameters  
+name:mikan  
+address:street  
+
+Response Headers  
+Content-Length:2  
+Date:Sun, 11 May 2014 10:42:38 GMT  
+Server:Apache-Coyote/1.1  
+
+2.Post请求：
+RequestURL:http://127.0.0.1:8080/test/test.do  
+Request Method:POST  
+Status Code:200 OK  
+
+Request Headers  
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8  
+Accept-Encoding:gzip,deflate,sdch  
+Accept-Language:zh-CN,zh;q=0.8,en;q=0.6  
+AlexaToolbar-ALX_NS_PH:AlexaToolbar/alxg-3.2  
+Cache-Control:max-age=0  
+Connection:keep-alive  
+Content-Length:25  
+Content-Type:application/x-www-form-urlencoded  
+Cookie:JSESSIONID=74AC93F9F572980B6FC10474CD8EDD8D  
+Host:127.0.0.1:8080  
+Origin:http://127.0.0.1:8080  
+Referer:http://127.0.0.1:8080/test/index.jsp  
+User-Agent:Mozilla/5.0 (Windows NT 6.1)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.149 Safari/537.36  
+
+Form Data  
+name:mikan  
+address:street  
+
+Response Headers  
+Content-Length:2  
+Date:Sun, 11 May 2014 11:05:33 GMT  
+Server:Apache-Coyote/1.1  
+
+这里要注意post请求的Content-Type为application/x-www-form-urlencoded，参数是在请求体中，即上面请求中的Form Data。
+
+</code></pre>
+
+<h2 id="ajax-post"><a name="user-content-ajax-post" href="#ajax-post" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用原生AJAX POST请求</h2>
+<pre><code> 在servlet中，可以通过request.getParameter(name)的形式来获取表单参数。
+ 而如果使用原生AJAX POST请求的话：
+function  getXMLHttpRequest() {  
+           var  xhr;  
+           if (window.ActiveXObject) {  
+                   xhr=  new  ActiveXObject( &quot;Microsoft.XMLHTTP&quot; );  
+          } else   if  (window.XMLHttpRequest) {  
+                   xhr=  new  XMLHttpRequest();  
+          } else  {  
+                   xhr=  null ;  
+          }  
+           return  xhr;  
+}  
+
+function  save() {  
+           var  xhr = getXMLHttpRequest();  
+          xhr.open( &quot;post&quot; , &quot;http://127.0.0.1:8080/test/test.do&quot; );  
+           var  data =  &quot;name=mikan&amp;address=street...&quot; ;  
+          xhr.send(data);  
+          xhr.onreadystatechange=  function () {  
+                    if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {  
+                            alert( &quot;returned:&quot; + xhr.responseText);  
+                   }  
+          };  
+}  
+
+通过chrome的开发者工具看到请求头如下：
+
+RequestURL:http://127.0.0.1:8080/test/test.do  
+Request Method:POST  
+Status Code:200 OK  
+
+Request Headers  
+Accept:*/*  
+Accept-Encoding:gzip,deflate,sdch  
+Accept-Language:zh-CN,zh;q=0.8,en;q=0.6  
+AlexaToolbar-ALX_NS_PH:AlexaToolbar/alxg-3.2  
+Connection:keep-alive  
+Content-Length:28  
+Content-Type:text/plain;charset=UTF-8  
+Cookie:JSESSIONID=C40C7823648E952E7C6F7D2E687A0A89  
+Host:127.0.0.1:8080  
+Origin:http://127.0.0.1:8080  
+Referer:http://127.0.0.1:8080/test/index.jsp  
+User-Agent:Mozilla/5.0 (Windows NT 6.1)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.149 Safari/537.36  
+
+Request Payload  
+name=mikan&amp;address=street  
+
+Response Headers  
+Content-Length:2  
+Date:Sun, 11 May 2014 11:49:23 GMT  
+Server:Apache-Coyote/1.1  
+
+
+
+注意请求的Content-Type为text/plain;charset=UTF-8，而请求表单参数在RequestPayload中。
+
+
+那么servlet中通过request.getParameter(name)却是空。为什么呢？
+而这样的参数又该怎么样获取呢？
+
+为了搞明白这个问题，查了些资料，也看了Tomcat7.0.53关于请求参数处理的源码，终于搞明白了是怎么回事。
+
+HTTP POST表单请求提交时，使用的Content-Type是application/x-www-form-urlencoded，
+而使用原生AJAX的 POST请求如果不指定请求头RequestHeader，默认使用的Content-Type是text/plain;charset=UTF-8。
+
+
+
+由于Tomcat对于Content-Type multipart/form-data（文件上传）和application/x-www-form-urlencoded（POST请求）做了“特殊处理”。
+下面来看看相关的处理代码。
+
+Tomcat的HttpServletRequest类的实现类为 org.apache.catalina.connector.Request（实际上是org.apache.coyote.Request），而它对 处理请求参数的方法为protected void parseParameters()，这个方法中对Content-Type multipart/form-data（文件上传）和application/x-www-form-urlencoded（POST请求）的处理代码 如下：
+
+protectedvoid parseParameters() {  
+            //省略部分代码......   
+           parameters.handleQueryParameters(); // 这里是处理url中的参数   
+            //省略部分代码......   
+            if  ( &quot;multipart/form-data&quot; .equals(contentType)) {  // 这里是处理文件上传请求   
+                parseParts();  
+                success =  true ;  
+                 return ;  
+           }  
+
+            if (!( &quot;application/x-www-form-urlencoded&quot; .equals(contentType))) { // 这里如果是非POST请求直接返回，不再进行处理   
+                success =  true ;  
+                 return ;  
+           }  
+            //下面的代码才是处理POST请求参数   
+            //省略部分代码......   
+            try  {  
+                 if  (readPostBody(formData, len)!= len) {  // 读取请求体数据   
+                     return ;  
+                }  
+           }  catch  (IOException e) {  
+                 // Client disconnect   
+                 if (context.getLogger().isDebugEnabled()) {  
+                    context.getLogger().debug(  
+                            sm.getString( &quot;coyoteRequest.parseParameters&quot; ),e);  
+                }  
+                 return ;  
+           }  
+           parameters.processParameters(formData,  0 , len);  // 处理POST请求参数，把它放到requestparameter map中（即request.getParameterMap获取到的Map，request.getParameter(name)也是从这个Map中获取的）   
+            // 省略部分代码......   
+}  
+
+    protected   int  readPostBody( byte  body[],  int  len)  
+        throws  IOException {  
+
+        int  offset =  0 ;  
+        do  {  
+            int  inputLen = getStream().read(body, offset, len - offset);  
+            if  (inputLen &lt;=  0 ) {  
+                 return  offset;  
+           }  
+           offset += inputLen;  
+       }  while  ((len - offset) &gt;  0 );  
+        return  len;  
+    }  
+从上面代码可以看出，Content-Type不是application/x-www-form-urlencoded的POST请求是不会读取请求体数据和进行相应的参数处理的，即不会解析表单数据来放到request parameter map中。所以通过request.getParameter(name)是获取不到的。
+
+
+那么这样提交的参数我们该怎么获取呢？
+
+当然是使用最原始的方式，读取输入流来获取了，如下所示：
+
+privateString getRequestPayload(HttpServletRequest req) {  
+          StringBuildersb =  new  StringBuilder();  
+           try (BufferedReaderreader = req.getReader();) {  
+                    char []buff =  new   char [ 1024 ];  
+                   intlen;  
+                    while ((len = reader.read(buff)) != - 1 ) {  
+                            sb.append(buff, 0 , len);  
+                   }  
+          } catch  (IOException e) {  
+                   e.printStackTrace();  
+          }  
+          returnsb.toString();  
+}  
+
+
+
+当然，设置了application/x-www-form-urlencoded的POST请求也可以通过这种方式来获取。
+
+所以，在使用原生AJAX POST请求时，需要明确设置Request Header，即：
+
+xhr.setRequestHeader( &quot;Content-Type&quot; , &quot;application/x-www-form-urlencoded&quot; );  
+
+另外，如果使用 jQuery ，我使用1.11.0这个版本来测试，$.ajax post请求是不需要明确设置这个请求头的，其他版本的本人没有亲自测试过。相信在1.11.0之后的版本也是不需要设置的。不过之前有的就不一定了。这个没有测试过。
+
+</code></pre>
+
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>服务器为什么会对表单提交和文件上传做特殊处理</h2>
+<pre><code>因为表单提 交数据是名值对的方式，且Content-Type为application/x-www-form-urlencoded，而文件上传服务器需要特殊处 理，普通的post请求（Content-Type不是application/x-www-form-urlencoded）数据格式不固定，不一定是 名值对的方式，所以服务器无法知道具体的处理方式，所以只能通过获取原始数据流的方式来进行解析。
+
+jquery在执行post请求时，会设置Content-Type为 application/x-www-form-urlencoded，所以服务器能够正确解析，而使用原生ajax请求时，如果不显示的设置 Content-Type，那么默认是text/plain，这时服务器就不知道怎么解析数据了，所以才只能通过获取原始数据流的方式来进行解析请求数 据。
+
+来源：  http://blog.csdn.net/mhmyqn/article/details/25561535
+</code></pre></article></body></html>

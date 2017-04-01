@@ -10,7 +10,6 @@ session在web开发中是一个非常重要的概念，这个概念很抽象，�
  
 1、概念：Session代表服务器与浏览器的一次会话过程，这个过程是连续的，也可以时断时续的。在Servlet中，session指的是HttpSession类的对象，这个概念到此结束了，也许会很模糊，但只有看完本文，才能真正有个深刻理解。
 
-
 ``` 
 ###Session创建的时间
 ```
@@ -101,4 +100,5 @@ javax.servlet.http.HttpServletRequest.getSession() 将会返回当前request相�
 翻译一下，当一个浏览器请求来到之后，Servlet处理程序（Servlet容器内部实现）将会主动检查请求信息Cookie当中是否有JSESSIONID，若有，找到对应JSESSION的HttpSession对象，如果没有，创建一个，具体的机制在Servlet容器的实现当中。
 
 ```
+
 

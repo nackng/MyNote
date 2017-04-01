@@ -5,3 +5,8 @@ Spring Cloud 为开发者提供了在分布式系统（如配置管理、服务�
 7个springcloud例子
 http://git.oschina.net/zhou666/spring-cloud-7simple
 ```
+###spring cloud config 入门
+```
+http://blog.csdn.net/liaokailin/article/details/51307215
+
+```
