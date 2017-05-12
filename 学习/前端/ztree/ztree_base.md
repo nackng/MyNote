@@ -125,4 +125,25 @@ function onCheck(e, treeId, treeNode) {
     $("#storenames").val(v);
     
 }
+##ztree置灰
+var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+var nodes = treeObj.getCheckedNodes(true);
+for (var i = 0; i < nodes.length; i++) {
+    treeObj.setChkDisabled(nodes[i],true);//置灰父节点
+    if(nodes[i].isParent){
+        var childrenNodes = nodes[i].children;
+        if (childrenNodes) {
+            for (var j = 0; j < childrenNodes.length; j++) {
+                treeObj.setChkDisabled(childrenNodes[j],ff);//置灰子节点
+            }
+        }
+    }
+}
+###ztree 获取所有节点
+var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+var nodes = treeObj.getNodes();
+for(var i=0; i<nodes.length; i++){
+    console.log(nodes[i].id);//获取每个节点的id
+}
+var nodesArr = treeObj.transformToArray(nodes);//获取整个树的节点集合
 

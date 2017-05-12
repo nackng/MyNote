@@ -186,4 +186,12 @@ public class DefineFactoryBeanTest {
     }
 }
 ```
-##
+##prototype 和 singleton
+有状态的bean都使用Prototype作用域，而对无状态的bean则应该使用singleton作用域。
+spring默认是单实例(singleton)的 ，由ioc容器管理 ，线程不安全。
+但如果你的类是没有状态的， 那用singleton 的性能要高一些 ，因为只有一个实例 。 
+如果你的类是有状态的 ，那就必须显示的设置为prototype了 ，否则线程不安全。
+在ssh2 项目中 ， struts2的action交由spring管理的时候 ，spring默认是singleton的 ，而struts2的action显然是有状态的 ，所以必须显示设置为 
+scope=“prototype” prototype为原型模式 ， 每次action请求过来都会创建一个action 
+但是对那些Dao的实现类推介scope=“singleton” 
+，因为这些类没有状态，用singleton只需维护一个实例，显然性能高一些。

@@ -156,11 +156,25 @@ menu:
     icon: github
 ###部署到github
 $ ssh-keygen -t rsa -C "860651416@qq.com"
+将生成的.pub文件内容添加到github的 sshkey中。
+测试ssh -T git@github3.com
+Hi FeagleLiu! You've successfully authenticated, but GitHub does not provide shell access.
+
 修改_config.yml，
 deploy:
   type: git
   repo: git@github.com:judasn/judasn.github.io.git
   branch: master
 
-
-
+##使用 Github 空间搭建 Hexo 技术博客
+http://code.youmeek.com/2016/02/28/2016/02/Hexo/
+##使用hexo-theme-smackdown主题，添加文章阅读数
+http://blog.smackdown.gebilaowu.cn/2016/10/31/hexo%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%95%B0/
+##去除hello-wolrd并将about当作主页部署
+```
+删除source/hello-world.md，并修改_config.yml 
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://feagleliu.github.io/about
+即可
+```

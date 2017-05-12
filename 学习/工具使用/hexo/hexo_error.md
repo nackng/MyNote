@@ -14,13 +14,36 @@ npm install hexo-deployer-git --save
 npm uninstall swig
 npm install swig@lastest
 ##hexo deploy ERROR Deployer not found: git
+```
 npm install hexo-deployer-git --save 改了之后执行，再部署就可以了。
+```
 ##WARN  No layout: index.html
 ##hexo deploy Error: error: src refspec HEAD does not match any.
  error at Process.ChildProcess._handle.onexit
 git config --global user.name "zhongxin007"
 git config --global user.email "860651416@qq.com"
 hexo deploy
+
+##$ hexo deploy
+INFO  Deploying: git
+INFO  Setting up Git deployment...
+Initialized empty Git repository in E:/blog/FeagleLiu/.deploy_git/.git/
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+解决：
+执行
+allen@allen1521 MINGW64 /e/blog/FeagleLiu (master)
+$ git config --global user.email "feagleliu@sina.com"
+
+allen@allen1521 MINGW64 /e/blog/FeagleLiu (master)
+$ git config --global user.name "feagleliu"
+即可。
+
 
 
 

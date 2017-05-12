@@ -82,5 +82,25 @@ New -> Module -> 不要设置module name,直接设置 Content root 添加\(modul
 ##idea实现快速热部署
 Run -> Edit configurations -> VM optioins : On 'update' action 选择Redeploy, On frame deactivation: update classes and resources .
 当源文件修改后，点一下Deployment选项卡中的Deploy All按钮即可。
+##idea svn使用
+http://www.cnblogs.com/whc321/p/5669804.html
+##idea运行项目调用方法结果集乱码
+在configurations中的VM options里加上-Dfile.encoding=UTF-8，就好了，这种问题是操作系统不是中文环境导致的。
+http://www.cnblogs.com/echo1937/p/6347483.html
+##idea 设置修改jsp 不重启tomcat
+run->edit configurations，
+设置On ‘Update’ action为Redeploy。
+设置On frame deactivation为Update classes and resourcees。
+##IntelliJ IDEA “Finds duplicated code”提示如何关闭
+Settings —> Editor —> Inspections —> General —> Duplicated Code取消勾选即可。
+##idea 方法参数可以自动提示
+Settings --> Editor --> General --> show quick document...
+或者直接在方法的括号内 ctrl + p 
+##idea 同时修改多行
+多行选中与不选快捷键: Alt + Shift + 鼠标左键
+去除多行选中快捷键: Esc
 
-
+备注：如果是多行的同一位置可以，按住Alt往下拉鼠标选中多行，输入即可同时写多行代码，方便写一些重复的控件声明。
+##idea实战快捷键
+Ctrl+Alt+F7 查找某个方法的所有调用地方
+Alt + 7 显示类中的所有方法

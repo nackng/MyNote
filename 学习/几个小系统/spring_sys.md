@@ -68,3 +68,82 @@ public class LoginController {
 
 }
 ```
+###spring-ioc
+```
+    /**
+     * 通过@Configuration组装XML配置所提供的配置信息
+     */
+    @Test
+    public void testConfigByConfiguration() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(LogonAppConfig.class);
+        LogonService logonService = context.getBean(LogonService.class);
+        logonService.printHelllo();
+    }
+/**
+ * 引用 XML 配置信息
+ */
+@Configuration
+@ImportResource("classpath:com/brianway/learning/spring/ioc/conf/beans-xmlconfig.xml")
+public class LogonAppConfig {
+
+    @Bean
+    @Autowired
+    public LogonService logonService(UserDao userDao, LogDao logDao) {
+        LogonService logonService = new LogonService();
+        logonService.setUserDao(userDao);
+        logonService.setLogDao(logDao);
+        return logonService;
+    }
+}
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <bean id="userDao" class="com.brianway.learning.spring.ioc.conf.UserDao"/>
+    <bean id="logDao" class="com.brianway.learning.spring.ioc.conf.LogDao"/>
+
+</beans>
+
+```
+##jeesite
+https://github.com/thinkgem/jeesite
+JeeSite 是一个企业信息化开发基础平台，Java企业应用开源框架，Java EE（J2EE）快速开发框架，使用经典技术组合（Spring、Spring MVC、Apache Shiro、MyBatis、Bootstrap UI），包括核心模块如：组织机构、角色用户、权限授权、数据权限、内容管理、工作流等。
+###登录模块
+```
+1.页面
+<form id="loginForm" class="form-signin" action="/jeesite/a/login" method="post" novalidate="novalidate">
+    <input class="btn btn-large btn-primary" type="submit" value="登 录">&nbsp;&nbsp;
+</form>
+2.Controller
+@Controller
+public class LoginController extends BaseController{
+    
+    @Autowired
+    private SessionDAO sessionDAO;
+    
+    /**
+     * 管理登录
+     */
+    @RequestMapping(value = "${adminPath}/login", method = RequestMethod.GET)
+    public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+        Principal principal = UserUtils.getPrincipal();
+        
+        if (logger.isDebugEnabled()){
+            logger.debug("login, active session size: {}", sessionDAO.getActiveSessions(false).size());
+        }
+        
+        // 如果已登录，再次访问主页，则退出原账号。
+        if (Global.TRUE.equals(Global.getConfig("notAllowRefreshIndex"))){
+            CookieUtils.setCookie(response, "LOGINED", "false");
+        }
+        
+        // 如果已经登录，则跳转到管理首页
+        if(principal != null && !principal.isMobileLogin()){
+            return "redirect:" + adminPath;
+        }
+        return "modules/sys/sysLogin";
+    }
+```
