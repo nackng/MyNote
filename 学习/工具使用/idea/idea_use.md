@@ -93,6 +93,13 @@ run->edit configurations，
 设置On frame deactivation为Update classes and resourcees。
 ##IntelliJ IDEA “Finds duplicated code”提示如何关闭
 Settings —> Editor —> Inspections —> General —> Duplicated Code取消勾选即可。
+##IDEA Properties中文unicode转码问题
+在IDEA中创建了properties文件，发现默认中文不会自动进行unicode转码。如下
+#\u4EA7\u54C1\u4FE1\u606F\u8BBE\u7F6E
+productName=JeeSite \u5FEB\u901F\u5F00\u53D1\u5E73\u53F0
+copyrightYear=2015
+version=V1.2.6
+在File-->Setting-->Editor-->File Encodings，在箭头指的选项上打上勾，确定即可
 ##idea 方法参数可以自动提示
 Settings --> Editor --> General --> show quick document...
 或者直接在方法的括号内 ctrl + p 
@@ -104,3 +111,4 @@ Settings --> Editor --> General --> show quick document...
 ##idea实战快捷键
 Ctrl+Alt+F7 查找某个方法的所有调用地方
 Alt + 7 显示类中的所有方法
+ctrl + p 提示方法参数

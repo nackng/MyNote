@@ -1,0 +1,15 @@
+[TOC]
+###1.为什么会产生zookeeper
+zookeeper是模仿的谷歌的Chubby来解决分布式一致性的问题。2006年的时候Google出了Chubby，2009年3年以后Yahoo在Apache上推出了类似的产品ZooKeeper.
+
+ZooKeeper跟Chubby一样用来存放一些相互协作的信息(Coordination)，这些信息比较小一般不会超过1M，在zookeeper中是以一种hierarchical tree的形式来存放，这些具体的Key/Value信息就store在tree node中。当有事件导致node数据，例如：变更，增加，删除时，Zookeeper就会调用 triggerWatch方法，判断当前的path来是否有对应的监听者(watcher),如果有watcher，会触发其process方法，执行process方法中的业务逻辑.
+###2.zookeeper在hbase中的作用：
+
+1.选举
+我们知道hbase通过zookeeper选举master，也就是说zookeeper提高了hbase集群的稳定性。换句话说，没有zookeeper，hbase稳定性大大降低,甚至不能启动。
+###Zookeeper在storm充当的作用
+Storm的所有的状态信息都是保存在Zookeeper里面，nimbus通过在zookeeper上面写状态信息来分配任务，
+supervisor，task通过从zookeeper中读状态来领取任务，同时supervisor, task也会定义发送心跳信息到zookeeper，
+使得nimbus可以监控整个storm集群的状态，从而可以重启一些挂掉的task。
+ZooKeeper 使得整个storm集群十分的健壮，任何一台工作机器挂掉都没有关系，只要重启然后从zookeeper上面重新获取状态信息就可以了。
+下面一张图，说明了zookeeper的作用：保存了集群操作的状态
